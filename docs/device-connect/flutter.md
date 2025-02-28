@@ -119,14 +119,14 @@ To create a user, call the `createUser` method with the following arguments:
 
 ```dart
 FinBoxDcPlugin.createUser("CLIENT_API_KEY", "CUSTOMER_ID").fold(
-    (right) => {
-          // Authentication is success
-          print("Access Token: $right")
-        },
     (left) => {
           // Authentication failed
           print("Error Code $left")
-        });
+        },
+    (right) => {
+        // Authentication is success
+        print("Access Token: $right")
+    });
 ```
 
 You can read about the errors in the [Error Codes](/device-connect/error-codes.html) section.
