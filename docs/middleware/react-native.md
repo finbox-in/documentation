@@ -20,7 +20,7 @@ Our SDK will auto link automatically with your application
 
 ## Authentication
 
-Open Android Studio and in the project level `build.gradle` file, add the repository URLs to all `allprojects` block.
+In the project level `build.gradle` file or `settings.gradle`, add the repository URLs to all `allprojects` block or `repositories` block inside `dependencyResolutionManagement`.
 
 ```groovy
 maven {

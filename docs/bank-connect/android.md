@@ -73,7 +73,7 @@ dependencies {
 
 ## Adding Dependency
 
-In the project level `build.gradle` file, add the repository URLs to all `allprojects` block.
+In the project level `build.gradle` file or `settings.gradle`, add the repository URLs to all `allprojects` block or `repositories` block inside `dependencyResolutionManagement`.
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',groovy:'Groovy'}">
 <template v-slot:kotlin>
@@ -164,7 +164,7 @@ Build the `FinBoxBankConnect` object by passing `apiKey`, `linkId`, `fromDate`, 
 ```kotlin
 FinBoxBankConnect.Builder(applicationContext)
     .apiKey("CLIENT_API_KEY")
-    .linkId("your_link_id")
+    .linkId("LINK_ID")
     .fromDate("01/01/2021") // Optional: Default 6 months old date
     .toDate("01/04/2021") // Optional: Default value 1 day less than current date
     .bank("sbi") // Optional: Short code of the bank
@@ -183,8 +183,8 @@ FinBoxBankConnect.Builder(applicationContext)
 
 ```java
 new FinBoxBankConnect.Builder(getApplicationContext())
-    .apiKey("your_api_key")
-    .linkId("your_link_id")
+    .apiKey("CLIENT_API_KEY")
+    .linkId("LINK_ID")
     .fromDate("01/01/2021") // Optional: Default 6 months old date
     .toDate("01/04/2021") // Optional: Default value 1 day less than current date
     .bank("sbi") // Optional: Short code of the bank

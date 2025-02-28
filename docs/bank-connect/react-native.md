@@ -81,7 +81,7 @@ SECRET_KEY=<SECRET_KEY>
 BC_SDK_VERSION=<BC_SDK_VERSION>
 ```
 
-In the project level `build.gradle` file, add the repository urls to all `allprojects` block.
+In the project level `build.gradle` file or `settings.gradle`, add the repository URLs to all `allprojects` block or `repositories` block inside `dependencyResolutionManagement`.
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',groovy:'Groovy'}">
 <template v-slot:kotlin>
