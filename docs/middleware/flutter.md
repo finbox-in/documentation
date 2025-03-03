@@ -1,10 +1,10 @@
 # FinBox Lending: Flutter
 
-FinBox Lending Flutter SDK is a wrapper around the Android SDK which helps add a digital lending journey to any mobile application.
+FinBox Lending Flutter SDK is a wrapper around the Android and IOS SDK which helps add a digital lending journey to any mobile application.
 
 ## Requirements
 
-Lending SDK works on Android 5.0+ (API level 21+), on Java 8+ and AndroidX. In addition to the changes, enable desugaring so that our SDK can run smoothly on Android 7.0 and versions below.
+FinBox Lending SDK works on Android 5.0+ (API level 21+), on Java 8+ and AndroidX. In addition to the changes, enable desugaring so that our SDK can run smoothly on Android 7.0 and versions below.
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',groovy:'Groovy'}">
 <template v-slot:kotlin>
