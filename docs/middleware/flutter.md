@@ -79,12 +79,6 @@ Specify the following in `local.properties` file:
   ACCESS_KEY=<ACCESS_KEY>
   SECRET_KEY=<SECRET_KEY>
   LENDING_SDK_VERSION=<LENDING_SDK_VERSION>
-
-  # Required when using DC + EF
-  DC_SDK_VERSION=<DC_SDK_VERSION>
-  COMMON_SDK_VERSION=<COMMON_SDK_VERSION>
-  COMMON_FLAVOR=<COMMON_FLAVOR>
-  LOGGER_SDK_VERSION=<LOGGER_SDK_VERSION>
   ```
 
 Add plugin dependency in `pubspec.yaml` file:
@@ -99,75 +93,73 @@ Following will be shared by FinBox team at the time of integration:
 - `ACCESS_KEY`
 - `SECRET_KEY`
 - `LENDING_SDK_VERSION`
-- `DC_SDK_VERSION`
-- `COMMON_SDK_VERSION`
-- `COMMON_FLAVOR`
-- `LOGGER_SDK_VERSION`
-- `CLIENT_API_KEY`
 :::
 
-## Start SDK flow
+## Build Lending
 
-Once all dependencies are added, SDK requires 3 inputs: `CUSTOMER_ID`, `USER_TOKEN` and `CLIENT_API_KEY`.
-`ENVIRONMENT` is an optional field. Default value of environment is `PROD`.
-
-::: tip Note
-`USER_TOKEN` needs to be generated against a `CUSTOMER_ID` on backend before starting the SDK. Refer [here](/middleware/sourcing-rest-api.html#generate-token)
-
-`ENVIRONMENT` needs to be updated to `PROD` when migrating application to production.
-:::
-
-Pass the required variables to `initSdk` method to setup the SDK.
+Build the FinBoxLendingPlugin object by passing `environment`, `apiKey`, `customer_id`, `user_token` and others.
 
 ```dart
  FinBoxLendingPlugin.initSdk(
-    "<ENVIRONMENT>",
-    "<CLIENT_API_KEY>",
-    "<CUSTOMER_ID>",
-    "<USER_TOKEN>");
+    "ENVIRONMENT", 
+    "CLIENT_API_KEY", 
+    "CUSTOMER_ID", 
+    "USER_TOKEN", 
+    AMOUNT,                 // Required only for Creditline Flow
+    "ORDER_ID",             // Required only for Creditline Flow
+    "UTM_SOURCE",           // Optional: UTM Source
+    "UTM_CONTENT",          // Optional: UTM Content
+    "UTM_MEDIUM",           // Optional: UTM Medium
+    "UTM_CAMPAIGN",         // Optional: UTM Campaign Name
+    "UTM_PARTNER_NAME",     // Optional: UTM Partner Name
+    "UTM_PARTNER_MEDUIM",   // Optional: UTM Partner Medium
+);
 ```
 
-Start the lending journey by calling `startLending` method.
+| Builder Property | Description | Required |
+| - | - | - |
+| `environment` | specifies the `prod` or `uat` environment | Yes |
+| `apiKey` | specifies the unique id shared with the client | Yes |
+| `customerId` | specifies the unqiue id for the customer | Yes |
+| `userToken` | specifies the unique token generated for the session | Yes |
+| `creditLineAmount` | Amount used for Creditline Journey | No |
+| `creditLineTransactionId` | Transaction id for the Creditline Journey | No |
+| `utmSource` | UTM Source | No |
+| `utmContent` | UTM Content | No |
+| `utmMedium` | Medium of the UTM campaign | No |
+| `utmCampaign` | Name of the UTM campaign | No |
+| `utmPartnerName` | Name of the UTM partner | No |
+| `utmPartnerMedium` | Medium of the UTM partner | No |
+
+## Show SDK Screen
+
+Start Lending Screen and listen for the result
 
 ```dart
  FinBoxLendingPlugin.startLending();
 ```
 
-## Credit Line
+## Parse Results
 
-For credit line journey, include the following dependency in the module `build.gradle` file:
+Once the user navigates through and completes the lending journey, the sdk automatically closes FinBoxLendingPlugin and returns the results inside `_getJourneyResult`.
 
-```dart
- FinBoxLendingPlugin.initSdk(
-    "<ENVIRONMENT>",
-    "<CUSTOMER_ID>",
-    "<CLIENT_API_KEY>",
-    "<USER_TOKEN>",
-    <WITHDRAW_AMOUNT>,
-    "<TRANSACTION_ID>");
-```
-
-- WITHDRAW_AMOUNT is passed to the init method that will contain the amount (in **Float**) that a user is trying to withdraw
-- TRANSACTION_ID will hold the transaction id (in **String**) for the withdrawal flow
-
-## Callback
-
-The callback will be provided when the user exits the SDK. You can track the status of user exit actions in the `onActivityResult` callback function
-
-Set method handler inside `build` method of your home page
+Set method handler inside `build` method of your home page to receive the results
 
 ```dart
 FinBoxLendingPlugin.platform.setMethodCallHandler(_getJourneyResult);
 ```
 
-Read the argument received when `_getJourneyResult` method gets invoked
+`call.arguments` contains `code`, `screen` and `message`.
+
+- `code`: Status code for the journey.
+- `screen`: Name of the last screen in the journey
+- `message`: Any additional message to describe the resultCode
 
 ```dart
 static Future<void> _getJourneyResult(MethodCall call) async {
-    if (call.method == 'getJourneyResult')
-        {
-            var json=call.arguments
-        }
+    if (call.method == 'getJourneyResult') {
+        var json=call.arguments
+    }
 }
 ```
 
@@ -181,11 +173,7 @@ Following json will be received
 }
 ```
 
-- `code`: Status code for the journey.
-- `screen`: Name of the last screen in the journey
-- `message`: Any additional message to describe the resultCode
-
-Possible values for `resultCode` are as follows:
+Possible values for `code` are as follows:
 | Result Code | Description |
 | - | - | - |
 | `MW200` | Journey is completed successfully |

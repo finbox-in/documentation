@@ -148,7 +148,7 @@ Following will be shared by FinBox team at the time of integration:
 
 ## Build Lending
 
-Build the FinBoxLending object by passing `environment`, `apiKey`, `customer_id`, `user_token` and others.
+Build the FinBoxMiddlewareSdk object by passing `environment`, `apiKey`, `customer_id`, `user_token` and others.
 
 ```javascript
 // Build Lending
