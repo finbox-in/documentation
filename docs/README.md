@@ -38,7 +38,7 @@ footer: Copyright © 2023 Moshpit Technologies Pvt. Ltd.
       Lets businesses get access to enriched transaction data of customers using bank statements uploaded manually or via Net Banking.
     </p>
     <p>
-      <a href="bank-connect/" class="doc_link">See Documentation →</a>
+      <a href="session-flow/" class="doc_link">See Documentation →</a>
     </p>
   </div>
 </div>
