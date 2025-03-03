@@ -71,7 +71,7 @@ dependencies {
 </template>
 </CodeSwitcher>
 
-## Adding Dependency
+## Add Dependency
 
 In the project level `build.gradle` file or `settings.gradle`, add the repository URLs to all `allprojects` block or `repositories` block inside `dependencyResolutionManagement`.
 
@@ -154,14 +154,14 @@ val builder = FinBoxLending.Builder(context)
     .setFinBoxApiKey("CLIENT_API_KEY")
     .setCustomerId("CUSTOMER_ID")
     .setUserToken("USER_TOKEN")
-    .setCreditLineAmount(AMOUNT) // Required only for Creditline Flow
-    .setCreditLineTransactionId("ORDER_ID") // Required only for Creditline Flow
-    .setUtmSource("UTM_SOURCE") // Optional: UTM Source
-    .setUtmContent("UTM_CONTENT") // Optional: UTM Content
-    .setUtmMedium("UTM_MEDIUM") // Optional: UTM Medium
-    .setUtmCampaign("UTM_CAMPAIGN") // Optional: UTM Campaign Name
-    .setUtmPartnerName("UTM_PARTNER_NAME") // Optional: UTM Partner Name
-    .setUtmPartnerMedium("UTM_PARTNER_MEDUIM") // Optional: UTM Partner Medium
+    .setCreditLineAmount(AMOUNT)                // Required only for Creditline Flow
+    .setCreditLineTransactionId("ORDER_ID")     // Required only for Creditline Flow
+    .setUtmSource("UTM_SOURCE")                 // Optional: UTM Source
+    .setUtmContent("UTM_CONTENT")               // Optional: UTM Content
+    .setUtmMedium("UTM_MEDIUM")                 // Optional: UTM Medium
+    .setUtmCampaign("UTM_CAMPAIGN")             // Optional: UTM Campaign Name
+    .setUtmPartnerName("UTM_PARTNER_NAME")      // Optional: UTM Partner Name
+    .setUtmPartnerMedium("UTM_PARTNER_MEDUIM")  // Optional: UTM Partner Medium
     .build()
 ```
 
@@ -174,14 +174,14 @@ FinBoxLending builder = FinBoxLending.Builder(context)
     .setFinBoxApiKey("CLIENT_API_KEY")
     .setCustomerId("CUSTOMER_ID")
     .setUserToken("USER_TOKEN")
-    .setCreditLineAmount(AMOUNT) // Required only for Creditline Flow
-    .setCreditLineTransactionId("ORDER_ID") // Required only for Creditline Flow
-    .setUtmSource("UTM_SOURCE") // Optional: UTM Source
-    .setUtmContent("UTM_CONTENT") // Optional: UTM Content
-    .setUtmMedium("UTM_MEDIUM") // Optional: UTM Medium
-    .setUtmCampaign("UTM_CAMPAIGN") // Optional: UTM Campaign Name
-    .setUtmPartnerName("UTM_PARTNER_NAME") // Optional: UTM Partner Name
-    .setUtmPartnerMedium("UTM_PARTNER_MEDUIM") // Optional: UTM Partner Medium
+    .setCreditLineAmount(AMOUNT)                // Required only for Creditline Flow
+    .setCreditLineTransactionId("ORDER_ID")     // Required only for Creditline Flow
+    .setUtmSource("UTM_SOURCE")                 // Optional: UTM Source
+    .setUtmContent("UTM_CONTENT")               // Optional: UTM Content
+    .setUtmMedium("UTM_MEDIUM")                 // Optional: UTM Medium
+    .setUtmCampaign("UTM_CAMPAIGN")             // Optional: UTM Campaign Name
+    .setUtmPartnerName("UTM_PARTNER_NAME")      // Optional: UTM Partner Name
+    .setUtmPartnerMedium("UTM_PARTNER_MEDUIM")  // Optional: UTM Partner Medium
     .build();
 ```
 
@@ -317,4 +317,3 @@ Possible values for `resultCode` are as follows:
 | `MW400` | Some error occurred in the SDK |
 | `CL200` | Credit line withdrawal success |
 | `CL500` | Credit line withdrawal failed |
-
