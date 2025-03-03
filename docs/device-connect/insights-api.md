@@ -55,7 +55,7 @@ x-api-key: XXXX-XXXX-XXXX
 ```json
 {
     "customer_id": "1234ABCD4567",
-    "version": 1,
+    "version": 6,
     "salt": "5vVMNofMy5kQXx647sBdYBoMolMb1GGBSYLkzwaa9v8="
 }
 ```
