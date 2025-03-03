@@ -15,7 +15,7 @@ Add the SDK to the application using Swift Package Manager (Preferred) or Cocopo
 
 1. In Xcode, select File > Add Packages...
 
-2. Enter the [Risk Manager URL](https://gitlab.com/finbox/deviceconnect/mobile/ios-risk-manager) for this repository
+2. Enter the [Risk Manager URL](https://github.com/finbox-in/device-connect-ios-sdk) for this repository
 
 </template>
 <template v-slot:cocopods>
