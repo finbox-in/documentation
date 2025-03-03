@@ -170,6 +170,10 @@ module.exports = {
               path: '/bank-connect/cordova.html'
             },
             {
+              title: 'IOS',
+              path: '/bank-connect/ios.html'
+            },
+            {
               title: 'JavaScript',
               path: '/bank-connect/javascript.html'
             },
@@ -404,6 +408,10 @@ module.exports = {
             {
               title: 'Flutter',
               path: '/middleware/flutter.html'
+            },
+            {
+              title: 'IOS',
+              path: '/middleware/ios.html'
             },
             {
               title: 'REST API',
