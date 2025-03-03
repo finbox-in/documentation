@@ -148,11 +148,6 @@ public class SaltGeneration {
 import hashlib, base64
 
 def create_salt(customer_id, server_hash):
-    """
-    Takes customer_id (unique identifier of customer)
-    and server_hash (shared by FinBox) as input
-    and returns salt in response
-    """
     customer_hash = hashlib.md5(customer_id.encode('utf-8')).hexdigest().upper()
     intermediate_hash = customer_hash + server_hash
     salt_encoded = hashlib.sha256(intermediate_hash.encode('utf-8')).digest()
