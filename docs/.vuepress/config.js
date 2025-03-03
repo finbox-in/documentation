@@ -170,6 +170,10 @@ module.exports = {
               path: '/bank-connect/cordova.html'
             },
             {
+              title: 'Ionic Capacitor',
+              path: '/bank-connect/ionic-capacitor.html'
+            },
+            {
               title: 'IOS',
               path: '/bank-connect/ios.html'
             },
