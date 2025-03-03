@@ -82,9 +82,13 @@ Use `url` to open up the Lending SDK. This URL can be:
 Web SDK holds the entire lending journey without capturing any user device information (alternate data). Loan approval rate depends on the data that is available, to boost the approval rate of a customer without any bureau data we recommend the use of **DeviceConnect**. 
 
 We support DeviceConnect integration for the following platforms. Please refer the integration doc for the same below:
+
 1. [Android SDK | FinBox Documentation](https://docs.finbox.in/device-connect/android.html)
-2. [React Native | FinBox Documentation](https://docs.finbox.in/device-connect/react-native.html)
-3. [Cordova | FinBox Documentation](https://docs.finbox.in/device-connect/cordova.html)
+2. [React Native SDK | FinBox Documentation](https://docs.finbox.in/device-connect/react-native.html)
+3. [Cordova SDK | FinBox Documentation](https://docs.finbox.in/device-connect/cordova.html)
+4. [Flutter SDK | FinBox Documentation](https://docs.finbox.in/device-connect/flutter.html)
+5. [Ionic Capacitor SDK | FinBox Documentation](https://docs.finbox.in/device-connect/ionic-capacitor.html)
+6. [IOS SDK | FinBox Documentation](https://docs.finbox.in/device-connect/ios.html)
 
 ## Credit Line
 In case of credit line, once the lending journey is completed, user can opt-in for a credit while doing a transaction.For such a case use the **Session API** with two extra inputs `withdrawAmount` and `transactionID`.
