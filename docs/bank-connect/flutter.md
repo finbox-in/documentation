@@ -158,6 +158,12 @@ Once all these conditions are met, the BankConnect object will build.
 
 Once the user navigates through the banks and uploads the bank statement, the sdk automatically closes `FinBoxBcPlugin` and returns the result inside `_getJourneyResult`.
 
+Set method handler inside `build` method of your home page to receive the results
+
+```dart
+FinBoxBcPlugin.platform.setMethodCallHandler(_getJourneyResult);
+```
+
 `call.arguments` contains `linkId` and `entityId` (or `sessionId`). A successful upload contains a unique `entityId` (or `sessionId`).
 
 - linkId - Unique id passed when building the Bank Connect object
