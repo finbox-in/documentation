@@ -167,16 +167,16 @@ Build the `BankSdk` object by passing `apiKey`, `linkId`, `fromDate`, `toDate`, 
 BankSdk.buildBankConnect(
     "CLIENT_API_KEY",
     "LINK_ID",
-    "FROM_DATE",
-    "TO_DATE",
-    "BANK_NAME",
-    "MODE",
-    "MOBILE_NUMBER",
-    "JOURNEY_MODE",
-    "AA_JOURNEY_MODE",
-    "AA_RECURRING_TENURE_MONTH_COUNT",
-    "AA_RECURRING_FREQUENCY_UNIT",
-    "AA_RECURRING_FREQUENCY_VALUE"
+    "FROM_DATE",                        // Optional: Default 6 months old date
+    "TO_DATE",                          // Optional: Default value 1 day less than current date
+    "BANK_NAME",                        // Optional: Short code of the bank
+    "MODE",                             // Optional: PDF Mode
+    "MOBILE_NUMBER",                    // Optional: Mobile number
+    "JOURNEY_MODE",                     // Optional: Multi PDF journey
+    "AA_JOURNEY_MODE",                  // Optional: Recurring AA pulls
+    "AA_RECURRING_TENURE_MONTH_COUNT",  // Optional: Consent duration is valid for 3 months
+    "AA_RECURRING_FREQUENCY_UNIT",      // Optional: Frequency value is in Days
+    "AA_RECURRING_FREQUENCY_VALUE"      // Optional: Number of times to pull the data
 );
 ```
 

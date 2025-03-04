@@ -165,16 +165,16 @@ Build the `FinBoxBankConnect` object by passing `apiKey`, `linkId`, `fromDate`, 
 FinBoxBankConnect.Builder(applicationContext)
     .apiKey("CLIENT_API_KEY")
     .linkId("LINK_ID")
-    .fromDate("01/01/2021") // Optional: Default 6 months old date
-    .toDate("01/04/2021") // Optional: Default value 1 day less than current date
-    .bank("sbi") // Optional: Short code of the bank
-    .mode(PDF) // Optional: PDF Mode
-    .mobileNumber("9876543210") // Optional: Mobile number
-    .journeyMode(MULTI_PDF) // Optional: Multi PDF journey
-    .aaJourneyMode(ONLY_RECURRING) // Optional: Recurring AA pulls
-    .aaRecurringTenureMonthCount(3) // Optional: Consent duration is valid for 3 months
-    .aaRecurringFrequencyUnit(TimeUnit.DAYS) // Optional: Frequency value is in Days
-    .aaRecurringFrequencyValue(2) // Optional: Number of times to pull the data
+    .fromDate("01/01/2021")                     // Optional: Default 6 months old date
+    .toDate("01/04/2021")                       // Optional: Default value 1 day less than current date
+    .bank("sbi")                                // Optional: Short code of the bank
+    .mode(PDF)                                  // Optional: PDF Mode
+    .mobileNumber("9876543210")                 // Optional: Mobile number
+    .journeyMode(MULTI_PDF)                     // Optional: Multi PDF journey
+    .aaJourneyMode(ONLY_RECURRING)              // Optional: Recurring AA pulls
+    .aaRecurringTenureMonthCount(3)             // Optional: Consent duration is valid for 3 months
+    .aaRecurringFrequencyUnit(TimeUnit.DAYS)    // Optional: Frequency value is in Days
+    .aaRecurringFrequencyValue(2)               // Optional: Number of times to pull the data
     .build()
 ```
 
@@ -185,16 +185,16 @@ FinBoxBankConnect.Builder(applicationContext)
 new FinBoxBankConnect.Builder(getApplicationContext())
     .apiKey("CLIENT_API_KEY")
     .linkId("LINK_ID")
-    .fromDate("01/01/2021") // Optional: Default 6 months old date
-    .toDate("01/04/2021") // Optional: Default value 1 day less than current date
-    .bank("sbi") // Optional: Short code of the bank
-    .mode(PDF) // Optional: PDF Mode
-    .mobileNumber("9876543210") // Optional: Mobile number
-    .journeyMode(MULTI_PDF) // Optional: Multi PDF journey
-    .aaJourneyMode(ONLY_RECURRING) // Optional: Recurring AA pulls
-    .aaRecurringTenureMonthCount(3) // Optional: Consent duration is valid for 3 months
-    .aaRecurringFrequencyUnit(TimeUnit.DAYS) // Optional: Frequency value is in Days
-    .aaRecurringFrequencyValue(2) // Optional: Number of times to pull the data
+    .fromDate("01/01/2021")                     // Optional: Default 6 months old date
+    .toDate("01/04/2021")                       // Optional: Default value 1 day less than current date
+    .bank("sbi")                                // Optional: Short code of the bank
+    .mode(PDF)                                  // Optional: PDF Mode
+    .mobileNumber("9876543210")                 // Optional: Mobile number
+    .journeyMode(MULTI_PDF)                     // Optional: Multi PDF journey
+    .aaJourneyMode(ONLY_RECURRING)              // Optional: Recurring AA pulls
+    .aaRecurringTenureMonthCount(3)             // Optional: Consent duration is valid for 3 months
+    .aaRecurringFrequencyUnit(TimeUnit.DAYS)    // Optional: Frequency value is in Days
+    .aaRecurringFrequencyValue(2)               // Optional: Number of times to pull the data
     .build();
 ```
 
