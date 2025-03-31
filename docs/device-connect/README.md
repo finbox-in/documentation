@@ -2,6 +2,11 @@
 
 FinBox DeviceConnect is an advanced alternative scoring platform that redefines credit decisioning by harnessing enriched device intelligence. By analysing vast behavioural and financial data points, DeviceConnect powers the FinBox Inclusion Score (FIS)—a proprietary metric that extends credit access beyond traditional bureau-based assessments.
 
+<ul>
+  <li><i class="fas fa-rocket"></i> Fast performance</li>
+  <li><i class="fas fa-lock"></i> Secure</li>
+</ul>
+
 ### Why Leading Enterprises Choose DeviceConnect
 
  **Accelerate Approvals & Expand Market Reach**  
