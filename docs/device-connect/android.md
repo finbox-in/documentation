@@ -266,10 +266,28 @@ finbox.startPeriodicSync();
 :repeat: **Functionality Overview**:
 - Initiates periodic background syncing of user data from all enabled sources (e.g., SMS, installed apps etc).
 - Sync intervals are controlled using the `setSyncFrequency` method.
-- Default collection frequency is 8 hrs and this is configurable.
 - Sync operations are optimized for battery and network conditions.
   - Automatically pauses syncing when the battery is low.
   - Resumes syncing when the device is charging or reconnected to a network
+
+By default, the sync frequency is set to **8 hours**. You can customize this frequency by calling the `setSyncFrequency` method and passing your preferred interval **in seconds** as an argument. Ensure this method is invoked after the user is created.
+
+<CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
+<template v-slot:kotlin>
+
+```kotlin
+finbox.setSyncFrequency(12 * 60 * 60)
+```
+
+</template>
+<template v-slot:java>
+
+```java
+finbox.setSyncFrequency();
+```
+
+</template>
+</CodeSwitcher>
 
 :lock: **Permissions-Driven Behavior**:
 - Data syncing respects all runtime permissions granted by the user. If any required permission (e.g., SMS, Installed etc) is not granted or is later revoked:
@@ -290,7 +308,7 @@ Upon login with a new set of credentials:
 - This resumes background syncing immediately, ensuring minimal delay in starting data collection for the new session.
 :::
 
-## :lock: Match Details on Device (Important)
+## Match Details on Device (Important)
 
 Device matching enhances the SDK's ability to associate user identity signals—such as email address, phone number, and name—with behavioral patterns. This improves insight accuracy while maintaining strict privacy boundaries. These values are securely processed on-device and used only for matching purposes. 
 
@@ -354,7 +372,7 @@ This step is optional but highly recommended for improved insight quality in mul
 :::
 
 
-## :iphone: Handling Background Restrictions on Specific Devices
+## Handling Background Restrictions on Specific Devices
 
 To ensure continuous background syncing—even on devices with aggressive battery optimizations—the SDK supports a silent wake-up mechanism using Firebase Cloud Messaging (FCM). When background sync is disrupted (e.g., due to the app being killed or restricted by the OS), FinBox servers send a silent FCM push to wake up the app. These notifications are invisible to the user and are used solely to reinitialize the SDK’s sync processes in the background.
 
@@ -439,30 +457,12 @@ FinBox.initLibrary(this);
 </template>
 </CodeSwitcher>
 
-## Handle Sync Frequency (Optional)
+## Handling User Logout: Stopping Background Sync
 
-By default, the sync frequency is set to **8 hours**. You can customize this frequency by calling the `setSyncFrequency` method and passing your preferred interval **in seconds** as an argument. Ensure this method is invoked after the user is created
-
-<CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
-<template v-slot:kotlin>
-
-```kotlin
-finbox.setSyncFrequency(12 * 60 * 60)
-```
-
-</template>
-<template v-slot:java>
-
-```java
-finbox.setSyncFrequency();
-```
-
-</template>
-</CodeSwitcher>
-
-## Cancel Periodic Sync
-
-Make sure to cancel data synchronization tasks when the user logs out of the app by using the `stopPeriodicSync` method. This ensures that no background sync operations continue unnecessarily, maintaining data security.
+When a user logs out of the app, it is important to explicitly stop ongoing background data synchronization to prevent unnecessary activity and ensure compliance with data handling standards.
+Call the `stopPeriodicSync` method during logout to:
+- Halt all future data sync operations
+- Maintain data privacy and session isolation
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
 <template v-slot:kotlin>
@@ -481,9 +481,9 @@ finbox.stopPeriodicSync();
 </template>
 </CodeSwitcher>
 
-## Reset User Data
+## Resetting Local User Data
 
-If you need to clear a user's data stored on the device and initiate a fresh data sync, use the `resetData` method. This ensures that all previous data is removed, and syncing starts from scratch.
+Use the `resetData` method to clear all locally cached data associated with the current user. This is typically used during logout flows or re-authentication scenarios where a clean local state is required.
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
 <template v-slot:kotlin>
@@ -502,9 +502,15 @@ FinBox.resetData();
 </template>
 </CodeSwitcher>
 
+**Behavior**:
+- Deletes all locally stored data associated with the active customerId.
+- Does not affect server-side data.
+- Can be safely called while offline; the reset is performed on-device.
+- Syncing can be restarted by simply calling startPeriodicSync() again.
+
 ## Forget User
 
-If a user requests to be forgotten, use the `forgetUser` method. This will delete all user details from our system, ensuring this meets digital guidelines for right to be forgotten.
+Use the `forgetUser` method to permanently delete all user data from FinBox systems. This should be used to comply with requests under data privacy laws (e.g., GDPR) or full account deletion flows.
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
 <template v-slot:kotlin>
@@ -523,10 +529,24 @@ FinBox.forgetUser();
 </template>
 </CodeSwitcher>
 
-::: tip RECOMMENDATION
+**Behavior**:
+- Deletes all server-side data associated with the user.
+- Removes the linked customerId and any stored insights.
+- Ensures full compliance with the "Right to be Forgotten."
 
-- When a user logs out, call both `stopPeriodicSync` and `resetData`  to:
-  - Stop any ongoing periodic sync processes.
-  - Clear existing user data.
-   This approach ensures a clean state before the next user session.
+:warning: Important: After this call, the user cannot be re-associated without a new createUser() invocation
+
+::: tip
+:ballot_box_with_check: Recommended Logout Flow:
+When a user logs out of the app, follow this flow to ensure clean separation of sessions:
+`stopPeriodicSync` > `resetData` 
+
+**Why this matters** :
+- stopPeriodicSync() halts background sync tasks.
+- resetData() ensures no residual information remains on the device.
+
+For full account deletion, combine:
+`stopPeriodicSync` > `resetData` > `forgetUser`
+
+- This will remove local, server-side, and identity-level data completely.
 :::
