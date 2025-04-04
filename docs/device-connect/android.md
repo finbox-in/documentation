@@ -294,7 +294,7 @@ Upon login with a new set of credentials:
 
 Device matching enhances the SDK's ability to associate user identity signals—such as email address, phone number, and name—with behavioral patterns. This improves insight accuracy while maintaining strict privacy boundaries. These values are securely processed on-device and used only for matching purposes. 
 
-:brain: **How It Works**:
+**How It Works**:
 - All matching and signal generation are performed locally on the device.
 - No personal information (phone number, email, name) is ever transmitted to FinBox servers.
 
@@ -329,10 +329,6 @@ final DeviceMatch deviceMatch = builder.build();
 </template>
 </CodeSwitcher>
 
-::: warning NOTE
-This step is optional but highly recommended for improved insight quality in multi-user or shared-device environments.
-:::
-
 Once the in-device values are set, call `setDeviceMatch` before starting the syncs.
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
@@ -353,17 +349,17 @@ finbox.setDeviceMatch(deviceMatch);
 </template>
 </CodeSwitcher>
 
-::: tip TIP
-For Device Match to work at full potential, the SDK expects `android.permission.READ_CONTACTS`, `android.permission.GET_ACCOUNTS`, `android.permission.READ_SMS` to be accepted by the user.
+::: tip
+This step is optional but highly recommended for improved insight quality in multi-user or shared-device environments. Also, for Device Match to work at full potential, the SDK expects `android.permission.READ_SMS` to be accepted by the user.
 :::
 
-## Forward Notifications to SDK (Important)
 
-Certain phone manufacturers, implement aggressive battery optimization features that kill apps running in the background after a certain period of inactivity. This can prevent the DeviceConnect SDK's continuous syncing from functioning properly, as it relies on background data collection. In such cases, FinBox’s server may need to request data from the SDK when continuous sync has stopped.
+## :iphone: Handling Background Restrictions on Specific Devices
 
-To enable this functionality, we use Firebase Cloud Messaging (FCM) notifications process. Forwarding these notifications allows the app to "wake up" if it has been killed by the device’s background processes, ensuring continuous data collection. When the app receives an FCM notification, it "wakes up" and continues collecting the necessary data for integration.
+To ensure continuous background syncing—even on devices with aggressive battery optimizations—the SDK supports a silent wake-up mechanism using Firebase Cloud Messaging (FCM). When background sync is disrupted (e.g., due to the app being killed or restricted by the OS), FinBox servers send a silent FCM push to wake up the app. These notifications are invisible to the user and are used solely to reinitialize the SDK’s sync processes in the background.
 
-Add the following lines inside the overridden `onMessageReceived` method available in the service that extends `FirebaseMessagingService`.
+:wrench: **Implementation**: To enable this functionality, forward relevant FCM messages to the SDK within your `FirebaseMessagingService` class.
+Add the following logic inside your overridden `onMessageReceived()` method
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
 <template v-slot:kotlin>
@@ -391,6 +387,10 @@ if(MessagingService.forwardToFinBoxSDK(remoteMessage.getData())) {
 
 </template>
 </CodeSwitcher>
+
+:white_check_mark: **Prerequisites**: 
+- Ensure notification permissions are enabled at the OS level.
+- The app must be installed (not uninstalled) for FCM-triggered wake-ups to work
 
 ## Multi-Process Support (Optional)
 
