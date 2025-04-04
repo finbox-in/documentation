@@ -8,7 +8,16 @@ The DeviceConnect Android SDK enables the collection of anonymized, non-PII data
 
 ## Requirements
 
-DeviceConnect Android SDK works on Android 5.0+ (API level 21+), on Java 8+ and AndroidX. In addition to the changes, enable desugaring so that our SDK can run smoothly on Android 7.0 and versions below.
+To ensure compatibility and optimal performance of the SDK, the following minimum requirements must be met:
+- **Android OS Version**: Android 5.0 (Lollipop) or higher (API Level 21+)
+- **Java Version**: Java 8 or higher
+- **Support Libraries**: AndroidX libraries are mandatory
+
+::: warning NOTE
+The SDK is built using **Java 8** language features, which are not fully supported on **Android 7.0** and below.
+To maintain compatibility with older devices, it is essential to enable Java 8 desugaring in your project.
+Devices running Android 8.0 (API 26) and above do not require desugaring, as Java 8 support is natively available.
+:::
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',groovy:'Groovy'}">
 <template v-slot:kotlin>
