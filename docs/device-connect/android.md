@@ -86,7 +86,9 @@ dependencies {
 
 ## Add Dependency
 
-In the project level `build.gradle` file or `settings.gradle`, add the repository URLs to all `allprojects` block or `repositories` block inside `dependencyResolutionManagement`.
+To include the DeviceConnect SDK in your project, configure your repository settings as follows:
+
+In your project-level `build.gradle` or `settings.gradle`, add the FinBox private Maven repository under the `allprojects.repositories` or `dependencyResolutionManagement.repositories` block.
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',groovy:'Groovy'}">
 <template v-slot:kotlin>
@@ -123,7 +125,7 @@ maven {
 </template>
 </CodeSwitcher>
 
-Now add the dependency to module level `build.gradle.kts` or `build.gradle` file:
+In your module-level `build.gradle.kts` or `build.gradle` file, add the required FinBox SDK dependencies
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',groovy:'Groovy'}">
 <template v-slot:kotlin>
@@ -159,7 +161,7 @@ implementation ('in.finbox:logger:<LOGGER_SDK_VERSION>:parent-release@aar') {
 </CodeSwitcher>
 
 ::: warning NOTE
-Following will be shared by FinBox team at the time of integration:
+The following integration details will be provided by the FinBox team at the time of onboarding:
 
 - `ACCESS_KEY`
 - `SECRET_KEY`
