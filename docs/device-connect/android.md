@@ -173,21 +173,14 @@ The following integration details will be provided by the FinBox team at the tim
 - `CLIENT_API_KEY`
 :::
 
-## Create User
+## User Initialization with `createUser`
 
-To create a user, call the `createUser` method with the following arguments:
+To begin data collection and syncing, the DeviceConnect SDK requires associating the current app session with a user. This is done using the `createUser` method
 
-- Client API Key
-- Customer ID
-
-::: danger IMPORTANT
-
-- `CUSTOMER_ID` Must be **alphanumeric** (no special characters).
-- Should not exceed **64** characters.
-- Must not be `null` or an empty string `""`.
-:::
-
-The response (success or failure) is handled using the `FinBoxAuthCallback` callback.
+|:Parameter |:Type |:Description |
+|----------|----------|----------|
+| CLIENT_API_KEY | String| The unique FinBox API key assigned to your application |
+| CUSTOMER_ID | String | Unique identifier assigned to the user by your system (see format rules) |
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
 <template v-slot:kotlin>
@@ -226,11 +219,29 @@ FinBox.createUser("CLIENT_API_KEY", "CUSTOMER_ID",
 </template>
 </CodeSwitcher>
 
+:warning: **Customer ID Rules**:
+- Must be alphanumeric only (no special characters)
+- Cannot exceed 64 characters
+- Must not be null or an empty string ("")
+
+The response (success or failure) is handled using the `FinBoxAuthCallback` callback.
+
+:repeat: **Behavior Notes**:
+- The method is idempotent: calling it repeatedly with the same customerId will not cause an error.
+- If the customer is already registered, the SDK will return a success response and continue as expected.
+- If invalid credentials or customer ID are provided, onError() is triggered with a specific error code
+
 You can read about the errors in the [Error Codes](/device-connect/error-codes.html) section.
 
-## Start Periodic Sync
+## Starting Background Data Sync: `startPeriodicSync()`
 
-The startPeriodicSync method should be invoked only after receiving a successful response from the `createUser` method callback. This method initiates background syncing for all data sources based on the permissions granted by the user. Data is synced at regular intervals in the background, ensuring continuous and seamless data collection.
+The startPeriodicSync() method begins regular background syncing of user data, based on the permissions granted to the app. It should be called only after a successful `createUser` call.
+
+:gear: **Usage Guidelines**:
+
+- This method must be called only after a successful response from the `createUser` callback. 
+- It is essential to ensure that the user has been successfully authenticated and linked to a valid `customerId` before enabling background sync
+
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
 <template v-slot:kotlin>
@@ -252,21 +263,45 @@ finbox.startPeriodicSync();
 </template>
 </CodeSwitcher>
 
-::: tip RECOMMENDATION
-To handle cross-login scenarios:
+:repeat: **Functionality Overview**:
+- Initiates periodic background syncing of user data from all enabled sources (e.g., SMS, installed apps etc).
+- Sync intervals are controlled using the `setSyncFrequency` method.
+- Default collection frequency is 8 hrs and this is configurable.
+- Sync operations are optimized for battery and network conditions.
+  - Automatically pauses syncing when the battery is low.
+  - Resumes syncing when the device is charging or reconnected to a network
 
-When a user logs back into the app with fresh credentials:
+:lock: **Permissions-Driven Behavior**:
+- Data syncing respects all runtime permissions granted by the user. If any required permission (e.g., SMS, Installed etc) is not granted or is later revoked:
+  - The SDK will skip syncing from that data source.
+  - No crash or exception will be thrown; sync continues from other available sources.
 
-- Call the `createUser` method to register the new user.
-- Follow it by `startPeriodicSync` to resume data syncing for the new user.
-Even though the SDK automatically adapts to a new user, this approach minimizes potential delays in syncing during the first session
+::: tip Handling User Switch or Cross-Login Scenarios
+When a user logs out and another user logs into the same device (e.g., a different customer ID), it’s important to ensure that the SDK cleanly associates the new user with future data syncs.
+
+**Recommended Flow on User Login**:
+Upon login with a new set of credentials:
+
+1. Call `createUser()`
+- This links the new customerId with the SDK.
+- The method is idempotent and will handle duplicate calls gracefully if the same user logs in again.
+
+2. Call `startPeriodicSync()`
+- This resumes background syncing immediately, ensuring minimal delay in starting data collection for the new session.
 :::
 
-## Match Details on Device (Important)
+## :lock: Match Details on Device (Important)
 
-Device matching enables additional pattern recognition to match email, phone numbers and name. The matching happens on the device and the user phone numbers, email addresses won't leave the device.
+Device matching enhances the SDK's ability to associate user identity signals—such as email address, phone number, and name—with behavioral patterns. This improves insight accuracy while maintaining strict privacy boundaries. These values are securely processed on-device and used only for matching purposes. 
 
-Create the builder by passing email address, phone number and name of the customer.
+:brain: **How It Works**:
+- All matching and signal generation are performed locally on the device.
+- No personal information (phone number, email, name) is ever transmitted to FinBox servers.
+
+This mechanism supports deeper validation of user ownership without compromising user privacy.
+
+:wrench: **Implementation**:
+Use the provided builder method to pass the user's identity attributes:
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
 <template v-slot:kotlin>
@@ -293,6 +328,10 @@ final DeviceMatch deviceMatch = builder.build();
 
 </template>
 </CodeSwitcher>
+
+::: warning NOTE
+This step is optional but highly recommended for improved insight quality in multi-user or shared-device environments.
+:::
 
 Once the in-device values are set, call `setDeviceMatch` before starting the syncs.
 
