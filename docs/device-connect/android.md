@@ -226,7 +226,7 @@ FinBox.createUser("CLIENT_API_KEY", "CUSTOMER_ID",
 
 The response (success or failure) is handled using the `FinBoxAuthCallback` callback.
 
-:repeat: **Behavior Notes**:
+:repeat: **Behavior**:
 - The method is idempotent: calling it repeatedly with the same customerId will not cause an error.
 - If the customer is already registered, the SDK will return a success response and continue as expected.
 - If invalid credentials or customer ID are provided, onError() is triggered with a specific error code
@@ -502,7 +502,7 @@ FinBox.resetData();
 </template>
 </CodeSwitcher>
 
-**Behavior**:
+:repeat: **Behavior Notes**:
 - Deletes all locally stored data associated with the active customerId.
 - Does not affect server-side data.
 - Can be safely called while offline; the reset is performed on-device.
@@ -529,7 +529,7 @@ FinBox.forgetUser();
 </template>
 </CodeSwitcher>
 
-**Behavior**:
+:repeat: **Behavior Notes**:
 - Deletes all server-side data associated with the user.
 - Removes the linked customerId and any stored insights.
 - Ensures full compliance with the "Right to be Forgotten."
