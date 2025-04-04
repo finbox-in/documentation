@@ -15,8 +15,8 @@ To ensure compatibility and optimal performance of the SDK, the following minimu
 
 ::: warning NOTE
 The SDK is built using **Java 8** language features, which are not fully supported on **Android 7.0** and below.
-To maintain compatibility with older devices, it is essential to enable Java 8 desugaring in your project.
-Devices running Android 8.0 (API 26) and above do not require desugaring, as Java 8 support is natively available.
+To maintain compatibility with older devices, it is essential to **enable Java 8 desugaring** in your project.
+Devices running **Android 8.0** and above **do not require desugaring**, as Java 8 support is natively available.
 :::
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',groovy:'Groovy'}">
