@@ -4,7 +4,7 @@ DeviceConnect empowers businesses with real-time, anonymized data intelligence t
 
 The frontend integration process consists of three key steps.
 
-<img src="/device_connect_android_integration.jpg" alt="Device Connect Android Integration Workflow" style="width:80%;height:80%" />
+<img src="/device_connect_android_integration.svg" alt="Device Connect Android Integration Workflow" style="width:80%;height:80%" />
 
 ### Step 1: Requesting Runtime Permissions
 

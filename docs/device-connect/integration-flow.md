@@ -16,7 +16,6 @@ DeviceConnect SDK Integration Summary:
 * Assign a unique, custom-generated user hash — no PII should be used or stored
 * Start periodic syncing to ensure data is sent to FinBox servers
 
-
 **3. Intelligent Data Synchronization**:
 
 * Once periodic syncing is enabled, anonymized device data is automatically sent to FinBox every 8 hours

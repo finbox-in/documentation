@@ -11,7 +11,7 @@ Additionally, include a link to the Privacy Policy at the bottom of the screen f
 
 Here’s an example structure for a Consent Screen
 
-<img src="/Permissions_screen.jpg" alt="Permission Screen" style="width:500;height:600" />
+<img src="/device_connect_permissions_screen.svg" alt="Permission Screen" style="width:500;height:600" />
 
 ### Runtime Permissions Added by the SDK
 Below are the list of Runtime permissions the sdk automatically adds to the application Manifest, if Manifest Merger is enabled:
