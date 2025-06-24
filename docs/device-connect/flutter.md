@@ -85,6 +85,14 @@ Specify the following in `local.properties` file:
   LOGGER_SDK_VERSION=<LOGGER_SDK_VERSION>
   ```
 
+Specify the following in `xcode.env` file:
+
+  ```properties
+  ACCESS_KEY=<ACCESS_KEY>
+  SECRET_KEY=<SECRET_KEY>
+  DC_SDK_VERSION=<DC_SDK_VERSION>
+  ```
+
 Add plugin dependency in `pubspec.yaml` file:
 
   ```yml
