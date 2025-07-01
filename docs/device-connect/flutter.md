@@ -86,7 +86,7 @@ Specify the following in `local.properties` file:
   ```properties
   ACCESS_KEY=<ACCESS_KEY>
   SECRET_KEY=<SECRET_KEY>
-  DC_SDK_VERSION=<DC_SDK_VERSION>
+  DC_SDK_VERSION=<DC_ANDROID_SDK_VERSION>
   DC_FLAVOR=<DC_FLAVOR>
   COMMON_SDK_VERSION=<COMMON_SDK_VERSION>
   COMMON_FLAVOR=<COMMON_FLAVOR>
@@ -98,7 +98,7 @@ Specify the following in `xcode.env` file:
   ```properties
   ACCESS_KEY=<ACCESS_KEY>
   SECRET_KEY=<SECRET_KEY>
-  DC_SDK_VERSION=<DC_SDK_VERSION>
+  DC_SDK_VERSION=<DC_IOS_SDK_VERSION>
   ```
 
 Add plugin dependency in `pubspec.yaml` file:
@@ -112,7 +112,8 @@ Following will be shared by FinBox team at the time of integration:
 
 - `ACCESS_KEY`
 - `SECRET_KEY`
-- `DC_SDK_VERSION`
+- `DC_ANDROID_SDK_VERSION`
+- `DC_IOS_SDK_VERSION`
 - `DC_FLAVOR`
 - `COMMON_SDK_VERSION`
 - `COMMON_FLAVOR`
