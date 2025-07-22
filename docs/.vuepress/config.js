@@ -442,6 +442,20 @@ module.exports = {
           ]
         },
         {
+          title: 'Lender Prism',
+          collapsable: false,
+          children: [
+            {
+              title: 'Overview & Integration Types',
+              path: '/middleware/lender-prism.html'
+            },
+            {
+              title: 'Complete API Documentation',
+              path: '/middleware/lender-prism-apis.html'
+            }
+          ]
+        },
+        {
           title: 'Appendix',
           path: '/middleware/appendix.html',
           collapsable: false
