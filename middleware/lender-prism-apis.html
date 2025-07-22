@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lender Prism APIs | FinBox Documentation</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="Documentation for FinBox SDK">
+    
+    <link rel="preload" href="/assets/css/0.styles.a6cdcdb5.css" as="style"><link rel="preload" href="/assets/js/app.b717c1a4.js" as="script"><link rel="preload" href="/assets/js/4.7f609412.js" as="script"><link rel="preload" href="/assets/js/2.a409744d.js" as="script"><link rel="preload" href="/assets/js/1.9be25c31.js" as="script"><link rel="preload" href="/assets/js/71.f591ff88.js" as="script"><link rel="prefetch" href="/assets/js/100.34b50718.js"><link rel="prefetch" href="/assets/js/101.e044a4dd.js"><link rel="prefetch" href="/assets/js/102.ab201ac7.js"><link rel="prefetch" href="/assets/js/103.bba3c68b.js"><link rel="prefetch" href="/assets/js/104.f134094b.js"><link rel="prefetch" href="/assets/js/105.b7c5801e.js"><link rel="prefetch" href="/assets/js/106.9d549c2a.js"><link rel="prefetch" href="/assets/js/107.95e0ed99.js"><link rel="prefetch" href="/assets/js/108.bb048fc9.js"><link rel="prefetch" href="/assets/js/109.2af8c36f.js"><link rel="prefetch" href="/assets/js/11.a81d671e.js"><link rel="prefetch" href="/assets/js/110.fe60d6b5.js"><link rel="prefetch" href="/assets/js/12.0c346857.js"><link rel="prefetch" href="/assets/js/13.59d89b18.js"><link rel="prefetch" href="/assets/js/14.473dec51.js"><link rel="prefetch" href="/assets/js/15.e28d3a0b.js"><link rel="prefetch" href="/assets/js/16.062030b1.js"><link rel="prefetch" href="/assets/js/17.37a5d2b1.js"><link rel="prefetch" href="/assets/js/18.120b49a6.js"><link rel="prefetch" href="/assets/js/19.d64eb9ef.js"><link rel="prefetch" href="/assets/js/20.80932b38.js"><link rel="prefetch" href="/assets/js/21.0e968812.js"><link rel="prefetch" href="/assets/js/22.3b9fd90d.js"><link rel="prefetch" href="/assets/js/23.14acaf9e.js"><link rel="prefetch" href="/assets/js/24.440f9dc2.js"><link rel="prefetch" href="/assets/js/25.27f414f5.js"><link rel="prefetch" href="/assets/js/26.83fefbaa.js"><link rel="prefetch" href="/assets/js/27.341cd04b.js"><link rel="prefetch" href="/assets/js/28.9f6ee4ab.js"><link rel="prefetch" href="/assets/js/29.fd98ec7f.js"><link rel="prefetch" href="/assets/js/3.a6163b8f.js"><link rel="prefetch" href="/assets/js/30.ac752400.js"><link rel="prefetch" href="/assets/js/31.5f5d949d.js"><link rel="prefetch" href="/assets/js/32.88d6abbb.js"><link rel="prefetch" href="/assets/js/33.66eae829.js"><link rel="prefetch" href="/assets/js/34.99ea984a.js"><link rel="prefetch" href="/assets/js/35.106fba23.js"><link rel="prefetch" href="/assets/js/36.f605ff58.js"><link rel="prefetch" href="/assets/js/37.3c2a3e19.js"><link rel="prefetch" href="/assets/js/38.9682ec3c.js"><link rel="prefetch" href="/assets/js/39.ea71df2c.js"><link rel="prefetch" href="/assets/js/40.be7b793e.js"><link rel="prefetch" href="/assets/js/41.cae3367f.js"><link rel="prefetch" href="/assets/js/42.7a0f84b6.js"><link rel="prefetch" href="/assets/js/43.b45e7ea2.js"><link rel="prefetch" href="/assets/js/44.9a7c59b5.js"><link rel="prefetch" href="/assets/js/45.e68a913b.js"><link rel="prefetch" href="/assets/js/46.e0eb9925.js"><link rel="prefetch" href="/assets/js/47.e2ed8428.js"><link rel="prefetch" href="/assets/js/48.1b1be4e2.js"><link rel="prefetch" href="/assets/js/49.0f1b8812.js"><link rel="prefetch" href="/assets/js/5.d6aeb4c8.js"><link rel="prefetch" href="/assets/js/50.48aa5e9a.js"><link rel="prefetch" href="/assets/js/51.4e59797d.js"><link rel="prefetch" href="/assets/js/52.47151df8.js"><link rel="prefetch" href="/assets/js/53.0f99138b.js"><link rel="prefetch" href="/assets/js/54.850ec2fb.js"><link rel="prefetch" href="/assets/js/55.5ed10506.js"><link rel="prefetch" href="/assets/js/56.a30993e6.js"><link rel="prefetch" href="/assets/js/57.7026d1b4.js"><link rel="prefetch" href="/assets/js/58.a705468d.js"><link rel="prefetch" href="/assets/js/59.627ae595.js"><link rel="prefetch" href="/assets/js/6.2927104c.js"><link rel="prefetch" href="/assets/js/60.2bace6b5.js"><link rel="prefetch" href="/assets/js/61.4f83b79d.js"><link rel="prefetch" href="/assets/js/62.0e52e2fe.js"><link rel="prefetch" href="/assets/js/63.5d448c0d.js"><link rel="prefetch" href="/assets/js/64.978e88fa.js"><link rel="prefetch" href="/assets/js/65.d9e0bc7d.js"><link rel="prefetch" href="/assets/js/66.a5ff3380.js"><link rel="prefetch" href="/assets/js/67.d70fb967.js"><link rel="prefetch" href="/assets/js/68.9cb098ff.js"><link rel="prefetch" href="/assets/js/69.7bb4455a.js"><link rel="prefetch" href="/assets/js/7.87013b79.js"><link rel="prefetch" href="/assets/js/70.b45550ff.js"><link rel="prefetch" href="/assets/js/72.87b5a6d1.js"><link rel="prefetch" href="/assets/js/73.216df461.js"><link rel="prefetch" href="/assets/js/74.4f16c40c.js"><link rel="prefetch" href="/assets/js/75.3aa34d42.js"><link rel="prefetch" href="/assets/js/76.a1f4f3d9.js"><link rel="prefetch" href="/assets/js/77.c02f5805.js"><link rel="prefetch" href="/assets/js/78.a144619b.js"><link rel="prefetch" href="/assets/js/79.91ab025f.js"><link rel="prefetch" href="/assets/js/8.f340bc97.js"><link rel="prefetch" href="/assets/js/80.b9f4ccac.js"><link rel="prefetch" href="/assets/js/81.2092c707.js"><link rel="prefetch" href="/assets/js/82.326cc85c.js"><link rel="prefetch" href="/assets/js/83.dea65d73.js"><link rel="prefetch" href="/assets/js/84.0b4073a9.js"><link rel="prefetch" href="/assets/js/85.d15bf579.js"><link rel="prefetch" href="/assets/js/86.e71482d8.js"><link rel="prefetch" href="/assets/js/87.f47ca44b.js"><link rel="prefetch" href="/assets/js/88.d380985d.js"><link rel="prefetch" href="/assets/js/89.39c71093.js"><link rel="prefetch" href="/assets/js/90.55f73ff2.js"><link rel="prefetch" href="/assets/js/91.57792e8d.js"><link rel="prefetch" href="/assets/js/92.74fa3465.js"><link rel="prefetch" href="/assets/js/93.c6732c12.js"><link rel="prefetch" href="/assets/js/94.f1c08677.js"><link rel="prefetch" href="/assets/js/95.879c8874.js"><link rel="prefetch" href="/assets/js/96.b10050cc.js"><link rel="prefetch" href="/assets/js/97.5f1477fd.js"><link rel="prefetch" href="/assets/js/98.794085b8.js"><link rel="prefetch" href="/assets/js/99.6da161b9.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.0464d051.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a6cdcdb5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-692ea4ed><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/header.svg" alt="FinBox Documentation" class="logo"> <span class="site-name can-hide">FinBox Documentation</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/device-connect/" class="nav-link">
+  DeviceConnect
+</a></div><div class="nav-item"><a href="/session-flow/" class="nav-link">
+  BankConnect
+</a></div><div class="nav-item"><a href="https://finbox.in" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  About
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/device-connect/" class="nav-link">
+  DeviceConnect
+</a></div><div class="nav-item"><a href="/session-flow/" class="nav-link">
+  BankConnect
+</a></div><div class="nav-item"><a href="https://finbox.in" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  About
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Overview</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/middleware/" aria-current="page" class="sidebar-link">Introduction</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Sourcing Entity</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/middleware/sourcing-entity.html" class="sidebar-link">Introduction</a></li><li><a href="/middleware/android.html" class="sidebar-link">Android</a></li><li><a href="/middleware/react-native.html" class="sidebar-link">React Native</a></li><li><a href="/middleware/flutter.html" class="sidebar-link">Flutter</a></li><li><a href="/middleware/ios.html" class="sidebar-link">IOS</a></li><li><a href="/middleware/sourcing-rest-api.html" class="sidebar-link">REST API</a></li><li><a href="/middleware/web-sdk.html" class="sidebar-link">Web SDK</a></li><li><a href="/middleware/banner.html" class="sidebar-link">Banner</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Lender</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/middleware/lender.html" class="sidebar-link">Introduction</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Lender Prism</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/middleware/lender-prism.html" class="sidebar-link">Overview &amp; Integration Types</a></li><li><a href="/middleware/lender-prism-apis.html" aria-current="page" class="active sidebar-link">Complete API Documentation</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#headers" class="sidebar-link">Headers</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#create-user-api" class="sidebar-link">Create User API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#update-user-details-api" class="sidebar-link">Update User Details API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#trigger-bre-api" class="sidebar-link">Trigger BRE API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#get-bre-api" class="sidebar-link">Get BRE API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#accept-offer-api" class="sidebar-link">Accept Offer API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#trigger-banking-api" class="sidebar-link">Trigger Banking API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#get-banking-result-api" class="sidebar-link">Get Banking Result API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#get-bank-list-api" class="sidebar-link">Get Bank List API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#document-upload-api" class="sidebar-link">Document Upload API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#trigger-kyc-api" class="sidebar-link">Trigger KYC API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#get-kyc-details-api" class="sidebar-link">Get KYC Details API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#trigger-agreement-signing-api" class="sidebar-link">Trigger Agreement Signing API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#get-agreement-signing-results-api" class="sidebar-link">Get Agreement Signing Results API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#trigger-disbursal-api" class="sidebar-link">Trigger Disbursal API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#get-disbursal-status-api" class="sidebar-link">Get Disbursal Status API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#session-api" class="sidebar-link">Session API</a></li><li class="sidebar-sub-header"><a href="/middleware/lender-prism-apis.html#generic-status-codes" class="sidebar-link">Generic Status Codes</a></li></ul></li></ul></section></li><li><a href="/middleware/appendix.html" class="sidebar-link">Appendix</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="lender-prism-apis"><a href="#lender-prism-apis" class="header-anchor">#</a> Lender Prism APIs</h1> <h2 id="headers"><a href="#headers" class="header-anchor">#</a> Headers</h2> <p>All server-to-server APIs will contain the below headers.</p> <table><thead><tr><th>Header</th> <th>Value</th> <th>Description</th></tr></thead> <tbody><tr><td>x-api-key</td> <td>SERVER_API_KEY</td> <td>This will be shared with the partner when integration is kicked-off.</td></tr> <tr><td>content-type</td> <td>application/json</td> <td></td></tr></tbody></table> <h2 id="create-user-api"><a href="#create-user-api" class="header-anchor">#</a> Create User API</h2> <p>This API creates a lending user at FinBox for a given customer ID.</p> <div class="custom-block tip"><p class="custom-block-title">Note</p> <p>The partner needs to keep track of this ID, as providing an existing customer ID will allow the user to continue their journey from the same stage.</p></div> <ul><li><strong>Method:</strong> POST</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/user/create</code></li></ul> <p><strong>Sample Request</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_customer_id&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;mobile&quot;</span><span class="token operator">:</span> <span class="token string">&quot;9999999999&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Sample Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;user created!&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CUR-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Request Payload</strong></p> <table><thead><tr><th>Field</th> <th>Type</th> <th>Description</th> <th>Mandatory</th></tr></thead> <tbody><tr><td>customer_id</td> <td>String</td> <td>Unique identifier of a customer created by the partner. This identifier is used in all subsequent API.</td> <td>Yes</td></tr> <tr><td>mobile</td> <td>String</td> <td>User's mobile number for verification</td> <td>Yes</td></tr></tbody></table> <p><strong>Status Codes</strong></p> <table><thead><tr><th>Case</th> <th>Status Codes</th></tr></thead> <tbody><tr><td>Create User Success</td> <td>CUR-S-000</td></tr> <tr><td>Invalid Mobile No</td> <td>CUR-E-001</td></tr> <tr><td>User Exists</td> <td>CUR-E-002</td></tr></tbody></table> <h2 id="update-user-details-api"><a href="#update-user-details-api" class="header-anchor">#</a> Update User Details API</h2> <p>This API will enable a partner to share all data about the customer with FinBox. This data will be used in various places in downstream actions like pre-qualification, BRE, KYC checks etc.</p> <ul><li><strong>Method:</strong> POST</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/user/details/update</code></li></ul> <div class="custom-block tip"><p class="custom-block-title">Note</p> <p>This call is made right before triggering pre-qualification.</p></div> <p><strong>Sample Request</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_customer_id&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;program&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PERSONAL_LOAN&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;basicDetails&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;personalDetails&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;pan&quot;</span><span class="token operator">:</span> <span class="token string">&quot;XYZPA1234A&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;email&quot;</span><span class="token operator">:</span> <span class="token string">&quot;testuser@gmail.com&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Test User&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;dob&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1997-11-18&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;gender&quot;</span><span class="token operator">:</span> <span class="token string">&quot;MALE&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;currentAddress&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;pincode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;560095&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;currentAddressLine1&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_address_L1&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;currentAddressLine2&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_address_L2&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;currentAddressCity&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_city&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;currentAddressState&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_state&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;employmentDetails&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;employmentType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Salaried&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;monthlyIncome&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0-25000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;email&quot;</span><span class="token operator">:</span> <span class="token string">&quot;testuser@organization.com&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;employmentOrganization&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_org&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;address&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;line1&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_address_L1&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;line2&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_address_L2&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;city&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_city&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;state&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_state&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;pincode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;560095&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;consents&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;HYBRID_CONSENT&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;timestamp&quot;</span><span class="token operator">:</span> <span class="token string">&quot;someTimestamp&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_consent_content&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;ipAddress&quot;</span><span class="token operator">:</span> <span class="token string">&quot;192.0.2.1&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_url&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+     <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BUREAU&quot;</span><span class="token punctuation">,</span>
+     <span class="token property">&quot;timestamp&quot;</span><span class="token operator">:</span> <span class="token string">&quot;someTimestamp&quot;</span><span class="token punctuation">,</span>
+     <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_consent_content&quot;</span><span class="token punctuation">,</span>
+     <span class="token property">&quot;ipAddress&quot;</span><span class="token operator">:</span> <span class="token string">&quot;192.0.2.1&quot;</span><span class="token punctuation">,</span>
+     <span class="token property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_url&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TNC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;timestamp&quot;</span><span class="token operator">:</span> <span class="token string">&quot;someTimestamp&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_consent_content&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;ipAddress&quot;</span><span class="token operator">:</span> <span class="token string">&quot;192.0.2.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_url&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Invocation 2 - For NACH</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;{{customerID}}&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;program&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EDI&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;mandateDetails&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;accountNumber&quot;</span><span class="token operator">:</span> <span class="token string">&quot;111111111&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;accountType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;savings&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;bankName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ICICI&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;mandateType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;accountHolderName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;someName&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;ifsc&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ICIC0003903&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;mandateAmount&quot;</span><span class="token operator">:</span> <span class="token number">94000</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;vendor&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vendorName&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;vendorDocID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;mandateID&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;npciTxnID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_npci_txn_id&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;basicDetails&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;businessDetails&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;category&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;subCategory&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;address&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;businessAddressType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;line1&quot;</span><span class="token operator">:</span> <span class="token string">&quot;someAddressLine1&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;line2&quot;</span><span class="token operator">:</span> <span class="token string">&quot;someAddressLine2&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;city&quot;</span><span class="token operator">:</span> <span class="token string">&quot;city&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;state&quot;</span><span class="token operator">:</span> <span class="token string">&quot;state&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;pincode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;landmark&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;location&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;latitude&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;longitude&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;uanDetails&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;uan&quot;</span><span class="token operator">:</span> <span class="token string">&quot;UDYAM123456&quot;</span>
+            <span class="token punctuation">}</span>                
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;loanDetails&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;insuranceDetails&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;premium&quot;</span><span class="token operator">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;gstApplicable&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;gstRate&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;vendor&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Acko&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;consents&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;INSURANCE&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;timestamp&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1704392919504&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;ipAddress&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0.0.0&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;someUrl&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Sample Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;success&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;UUD-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Request Payload</strong></p> <table><thead><tr><th>Field</th> <th>Type</th> <th>Description</th> <th>Mandatory</th></tr></thead> <tbody><tr><td>customerID</td> <td>String</td> <td>Unique identifier of a customer created by the partner. This identifier is used in all subsequent API.</td> <td>Yes</td></tr> <tr><td>program</td> <td>String</td> <td>Fixed Value: PERSONAL_LOAN</td> <td>Yes</td></tr> <tr><td>basicDetails</td> <td>Array</td> <td></td> <td>Yes</td></tr> <tr><td>consents</td> <td>Array</td> <td>Consent details collected by the partner</td> <td>Yes</td></tr> <tr><td>riskVariables</td> <td>Array</td> <td>This includes any additional parameters to be included in the BRE for a partner specific policy</td> <td>No</td></tr> <tr><td>additionalData</td> <td>Array</td> <td>This includes any extra data intended for partner supplemental purposes.</td> <td>No</td></tr></tbody></table> <p><strong>Status Codes</strong></p> <table><thead><tr><th>Case</th> <th>Status Codes</th></tr></thead> <tbody><tr><td>Update User Details Success</td> <td>UUD-S-000</td></tr> <tr><td>Invalid Payload</td> <td>UUD-E-000</td></tr> <tr><td>Error Processing Request</td> <td>UUD-E-001</td></tr> <tr><td>Validation Error</td> <td>UUD-E-002</td></tr></tbody></table> <h2 id="trigger-bre-api"><a href="#trigger-bre-api" class="header-anchor">#</a> Trigger BRE API</h2> <ul><li><strong>Method:</strong> POST</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/user/offers</code></li></ul> <p>This API will trigger the BRE on FinBox side.</p> <ol><li>FinBox will handle fetching bureau data.</li> <li>FinBox will run all other checks required (Pincode Serviceability, Dedupe, Hunter, Posidex etc)</li></ol> <p><strong>Sample Request</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+   <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span><span class="token string">&quot;some_id&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;riskVariables&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Sample Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_reference_id&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GNO-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Request Payload</strong></p> <table><thead><tr><th>Field</th> <th>Type</th> <th>Description</th> <th>Mandatory</th> <th>Validations</th></tr></thead> <tbody><tr><td>customerID</td> <td>String</td> <td>Unique identifier of a customer created by the partner. This identifier is used in all subsequent API.</td> <td>Yes</td> <td></td></tr> <tr><td>riskVariables</td> <td>String</td> <td>Will remain empty unless there is a partner specific use case.</td> <td>Yes</td> <td></td></tr></tbody></table> <p><strong>Status Codes</strong></p> <table><thead><tr><th>Case</th> <th>Status Codes</th></tr></thead> <tbody><tr><td>Generate Offers Success</td> <td>GNO-S-000</td></tr> <tr><td>Invalid Policy ID</td> <td>GNO-E-002</td></tr></tbody></table> <h2 id="get-bre-api"><a href="#get-bre-api" class="header-anchor">#</a> Get BRE API</h2> <ul><li><strong>Method:</strong> GET</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/user/offers?referenceID=some_reference_id</code></li></ul> <p>This API returns the offers generated by the BRE. It can return 4 cases:</p> <ul><li><strong>SUCCESS:</strong> Offer is generated.</li> <li><strong>REJECTED:</strong> User is rejected potentially because of Pre BRE checks or Lender BRE checks.</li> <li><strong>PROCESSING:</strong> In case of this status, partner should keep polling in intervals of 5-10 second.</li> <li><strong>FAILED:</strong> This could be due to a technical issue or timeout. It is recommended to call the set of Trigger BRE and Get BRE APIs 2-3 times at 30 second intervals. If the issue persists, the case should be held and problem must be reported to the Finbox team.</li></ul> <p><strong>Sample Response</strong></p> <p><strong>Processing</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;dataRequired&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;offers&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;outputVariables&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;rejectionReason&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c3a709e0-8bcb-47aa-86cd-b8d6581f4782&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PROCESSING&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GEO-S-001&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Failed</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;dataRequired&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;offers&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;outputVariables&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;rejectionReason&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c3a709e0-8bcb-47aa-86cd-b8d6581f4782&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;FAILED&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GEO-S-003&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Rejected</strong>
+Rejection Reasons: PRE_BRE_REJECT and LENDER_BRE_REJECT</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;dataRequired&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;offers&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c3a709e0-8bcb-47aa-86cd-b8d6581f4782&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;outputVariables&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;rejectionReason&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Detailed rejection reason&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;rejectionReason&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PRE_BRE_REJECT&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;REJECTED&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GEO-S-002&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Success</strong>
+This is the final offer generated which is shown to the user.</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;dataRequired&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;offers&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;createdAt&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2024-02-29T12:17:52.414026Z&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;expiresAt&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2024-03-30T00:00:00Z&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;lenderID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c1a55e53-4701-49a1-923c-3cf32a66b5ec&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;lenderLogoURL&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://finbox-cdn.s3.ap-south-1.amazonaws.com/assets/abfl_logo.jpeg&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;lenderName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Aditya Birla Finance Limited&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;offerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;3a6112e6-61de-437a-a84b-5c6f8b655722&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;offerType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;final&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;slabs&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;maxAmount&quot;</span><span class="token operator">:</span> <span class="token number">200000</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;minAmount&quot;</span><span class="token operator">:</span> <span class="token number">100000</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;tenure&quot;</span><span class="token operator">:</span> <span class="token number">12</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;interest&quot;</span><span class="token operator">:</span> <span class="token number">25</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;method&quot;</span><span class="token operator">:</span> <span class="token string">&quot;rb&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;processingFee&quot;</span><span class="token operator">:</span> <span class="token number">2.75</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;processingFeeType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PERC&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;gst&quot;</span><span class="token operator">:</span> <span class="token number">18</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ACTIVE&quot;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;outputVariables&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;rejectionReason&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SUCCESS&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GEO-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Status Codes</strong></p> <table><thead><tr><th>Case</th> <th>Status Codes</th></tr></thead> <tbody><tr><td>Get Offers Success Status</td> <td>GEO-S-000</td></tr> <tr><td>Get Offers Processing Status</td> <td>GEO-S-001</td></tr> <tr><td>Get Offers Rejected Status</td> <td>GEO-S-002</td></tr> <tr><td>Get Offers Failed Status</td> <td>GEO-S-003</td></tr></tbody></table> <h2 id="accept-offer-api"><a href="#accept-offer-api" class="header-anchor">#</a> Accept Offer API</h2> <p>This API informs FinBox about the final accepted offer in the system. The selected offer should fall within the offer slabs generated in the GetBRE response. It will also subsequently create a loan application in the system.</p> <ul><li><strong>Method:</strong> POST</li> <li><strong>URL:</strong> <code>&lt;base_url&gt;/user/acceptOffer</code></li></ul> <p><strong>Sample Request</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+   <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span><span class="token string">&quot;someCustomerID&quot;</span><span class="token punctuation">,</span>
+   <span class="token property">&quot;offerDetails&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+      <span class="token property">&quot;offerID&quot;</span><span class="token operator">:</span><span class="token string">&quot;d89b2b1b-98ff-4378-af0c-235cfc00b71a&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;amount&quot;</span><span class="token operator">:</span><span class="token number">80000</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;tenure&quot;</span><span class="token operator">:</span><span class="token number">8</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;interest&quot;</span><span class="token operator">:</span> <span class="token number">25</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Request Payload</strong></p> <table><thead><tr><th>Field</th> <th>Type</th> <th>Description</th> <th>Mandatory</th> <th>Validations</th></tr></thead> <tbody><tr><td>customerID</td> <td>String</td> <td>Unique identifier of a customer used in create user API</td> <td>Yes</td> <td></td></tr> <tr><td>offerDetails</td> <td>Array</td> <td>Offer Details block</td> <td>Yes</td> <td></td></tr></tbody></table> <p><strong>Sample Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ok&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AOP-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Status Codes</strong></p> <table><thead><tr><th>Case</th> <th>Status Codes</th></tr></thead> <tbody><tr><td>Success</td> <td>AOP-S-000</td></tr> <tr><td>Invalid Offer ID</td> <td>AOP-E-002</td></tr> <tr><td>Invalid Input</td> <td>AOP-E-003</td></tr></tbody></table> <h2 id="trigger-banking-api"><a href="#trigger-banking-api" class="header-anchor">#</a> Trigger Banking API</h2> <ul><li><strong>Method:</strong> POST</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/user/bank/analyse</code></li></ul> <p>This API consumes the necessary banking details and initiates the flow at FinBox.</p> <div class="custom-block warning"><p class="custom-block-title">Bank Statement Range</p> <p>Bank Statements Uploaded should be within the specific range from the last completed month.</p> <p><strong>Example:</strong></p> <ul><li>Today's Date: 05/09/2024</li> <li>Last Completed Month: 08/2024</li> <li>Accepted Range: 01/03/2024- 31/08/2024</li></ul></div> <p><strong>Sample Request (Form Request)</strong></p> <div class="language- extra-class"><pre class="language-text"><code>&quot;customerID&quot;:&quot;some_customer_id&quot;,    
+&quot;files&quot;:&quot;&quot;,
+&quot;bankName&quot;:&quot;HDFC&quot;,
+&quot;uploadType&quot;: &quot;PDF/BASE64&quot;,
+&quot;pdfPassword&quot;:&quot;&quot;    //Optional
+</code></pre></div><p><strong>Sample Response</strong></p> <p><strong>Success</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+   <span class="token property">&quot;data&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+      <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span><span class="token string">&quot;some_ref_id&quot;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token property">&quot;error&quot;</span><span class="token operator">:</span><span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+   <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BANK-TBN-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Failed</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+   <span class="token property">&quot;data&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token property">&quot;error&quot;</span><span class="token operator">:</span><span class="token string">&quot;user not found&quot;</span><span class="token punctuation">,</span>
+   <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;FBX-E-006&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Request Payload</strong></p> <table><thead><tr><th>Field</th> <th>Type</th> <th>Description</th> <th>Mandatory</th> <th>Validations</th></tr></thead> <tbody><tr><td>customer_id</td> <td>String</td> <td>Unique identifier of a customer created by the partner. This identifier is used in all subsequent API.</td> <td>Yes</td> <td></td></tr> <tr><td>files</td> <td>File</td> <td>Bank Statement File to be upload. (Supports multiple files within the accepted range)</td> <td>Yes</td> <td>Size limit is 5MB.</td></tr> <tr><td>bankName</td> <td>String</td> <td>Bank Name to be fetched from Bank List API (banks.name)</td> <td>Yes</td> <td></td></tr> <tr><td>uploadType</td> <td>String</td> <td>File type being uploaded</td> <td>Yes</td> <td>Accepted Values: PDF/ BASE64</td></tr> <tr><td>pdfPassword</td> <td>String</td> <td>To be passed if the file is password protected.</td> <td>No</td> <td></td></tr></tbody></table> <p><strong>Status Codes</strong></p> <table><thead><tr><th>Case</th> <th>HTTP Code</th> <th>Status Codes</th></tr></thead> <tbody><tr><td>Success</td> <td>200</td> <td>BANK-TBN-S-000</td></tr></tbody></table> <h2 id="get-banking-result-api"><a href="#get-banking-result-api" class="header-anchor">#</a> Get Banking Result API</h2> <ul><li><strong>Method:</strong> GET</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/user/bank/analyse?referenceID=some_reference_id</code></li></ul> <p>This API returns can return 3 possible scenario:</p> <ul><li><strong>SUCCESS:</strong> Banking flow is completed.</li> <li><strong>PROCESSING:</strong> Banking flow is not completed; partner should keep polling in intervals of 5-10 second.</li> <li><strong>FAILED:</strong> Banking flow failed due to incorrect details or a technical error. The partner should restart the banking process by invoking the Trigger Banking API with the correct details.</li></ul> <p><strong>Sample Response</strong></p> <p><strong>Success</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;errorCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;errorMessage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c3a709e0-8bcb-47aa-86cd-b8d6581f4782&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SUCCESS&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BANK-GBR-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Processing</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+   <span class="token property">&quot;bankingDetails&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+    <span class="token property">&quot;errorCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;errorMessage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>    
+    <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c3a709e0-8bcb-47aa-86cd-b8d6581f4782&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PROCESSING&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BANK-GBR-S-001&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Failed</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+   <span class="token property">&quot;bankingDetails&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+    <span class="token property">&quot;errorCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PDF_IS_IMAGE&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;errorMessage&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Scanned images are not supported&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>    
+    <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c3a709e0-8bcb-47aa-86cd-b8d6581f4782&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;FAILED&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BANK-GBR-S-002&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>List of Error Codes in FAILED Response</strong></p> <table><thead><tr><th>errorCode</th> <th>errorMessage</th></tr></thead> <tbody><tr><td>INVALID_DATE_FORMAT</td> <td>Invalid 'from_date' or 'to_date' format. Use 'DD/MM/YYYY'.</td></tr> <tr><td>INVALID_DATE_RANGE</td> <td>from_date' can't be greater or equal to 'to_date'.</td></tr> <tr><td>MISSING_DATE_FIELD</td> <td>from_date' and 'to_date' are required.</td></tr> <tr><td>INVALID_BANK_NAME</td> <td>Invalid bank identifier.</td></tr> <tr><td>MISSING_BANK_NAME</td> <td>bank_name' is required with 'mode'.</td></tr> <tr><td>MODE_NOT_AVAILABLE</td> <td>Specified mode not available for this bank.</td></tr> <tr><td>MODE_NOT_ENABLED</td> <td>Specified mode not enabled. Contact FinBox Admin.</td></tr> <tr><td>TRIAL_PERIOD_EXPIRED</td> <td>Your trial period has expired. Please request FinBox to upgrade your plan</td></tr> <tr><td>INVALID_FILE_OBJECT</td> <td>This field must be present as a form field. Send request with content type x-www-form-urlencoded or form-data</td></tr> <tr><td>PDF_IS_IMAGE</td> <td>Scanned images are not supported</td></tr> <tr><td>BANK_NAME_MISMATCH</td> <td>Not {selected_bank_name} bank statement</td></tr> <tr><td>OUT_OF_DATE_RANGE</td> <td>No transactions in expected date range</td></tr> <tr><td>STATEMENT_DUPLICATE</td> <td>A duplicate statement has been detected</td></tr> <tr><td>EXTERNAL_API_FAILURE</td> <td>External API failure, please try again later</td></tr> <tr><td>VALIDATION_ERROR</td> <td>Savings account statement not used</td></tr> <tr><td>FRAUD</td> <td>We have detected an issue with your bank statement. Please try again with RBI regulated Account Aggregator or Netbanking.</td></tr></tbody></table> <p><strong>Status Codes</strong></p> <table><thead><tr><th>Case</th> <th>HTTP Code</th> <th>Status Codes</th></tr></thead> <tbody><tr><td>Success</td> <td>200</td> <td>BANK-GBR-S-000</td></tr> <tr><td>Processing</td> <td>200</td> <td>BANK-GBR-S-001</td></tr> <tr><td>Failed</td> <td>200</td> <td>BANK-GBR-S-002</td></tr></tbody></table> <h2 id="get-bank-list-api"><a href="#get-bank-list-api" class="header-anchor">#</a> Get Bank List API</h2> <ul><li><strong>Method:</strong> GET</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/bank/list?customerID=some_cust_id</code></li></ul> <p>This API fetches the list of accepted banks in the Banking API flow.</p> <p><strong>Sample Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;count&quot;</span><span class="token operator">:</span> <span class="token number">435</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;banks&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SBI&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;fullName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;State Bank of India&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;npciCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SBIN&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;logoUrl&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://s3.ap-south-1.amazonaws.com/finbox-cdn/bank_logos/sbi_light.png&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;isPdfUpload_available&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;isNetBanking_available&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;isAaAvailable&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ICICI&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;fullName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ICICI&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;npciCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ICIC&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;logoUrl&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://s3.ap-south-1.amazonaws.com/finbox-cdn/bank_logos/sbi_light.png&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;isPdfUpload_available&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;isNetBanking_available&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;isAaAvailable&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Status Codes</strong></p> <table><thead><tr><th>Case</th> <th>HTTP Code</th> <th>Status Codes</th></tr></thead> <tbody><tr><td>Success</td> <td>200</td> <td>BANK-GBL-S-000</td></tr></tbody></table> <h2 id="document-upload-api"><a href="#document-upload-api" class="header-anchor">#</a> Document Upload API</h2> <ul><li><strong>Method:</strong> POST</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/document/upload</code></li></ul> <p><strong>Headers</strong></p> <ul><li>Content-Type: multipart/form-data</li> <li>Accept-Encoding: gzip, deflate, br</li> <li>Connection: keep-alive</li></ul> <p><strong>Request Types</strong></p> <p><strong>Aadhar XML Upload</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;program&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EDI&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;digilocker_aadhaar_xml&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&lt;file&gt;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;documentType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AADHAAR_XML&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_customerID&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Selfie Upload</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;program&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EDI&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;selfie&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&lt;file&gt;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;documentType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SELFIE&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_customerID&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Agreement Upload</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;program&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EDI&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;agreement&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&lt;file&gt;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;documentType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LOAN_AGREEMENT&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_customerID&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Business Proof Upload</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;program&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EDI&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;business_proof_doc&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&lt;file&gt;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;documentType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BUSINESS_PROOF_DOC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_customerID&quot;</span>    
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="trigger-kyc-api"><a href="#trigger-kyc-api" class="header-anchor">#</a> Trigger KYC API</h2> <ul><li><strong>Method:</strong> POST</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/kyc/ckyc</code></li></ul> <p><strong>Request:</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_customerID&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;program&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PERSONAL_LOAN&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Success Response:</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_reference_id&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TCK-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="get-kyc-details-api"><a href="#get-kyc-details-api" class="header-anchor">#</a> Get KYC Details API</h2> <p>This API is used to fetch KYC status, and the relevant details.</p> <ul><li><strong>Method:</strong> GET</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/kyc/details?referenceID=some_reference_id</code></li></ul> <p><strong>Response Statuses</strong></p> <ul><li>APPROVED</li> <li>PROCESSING</li> <li>ACTION_PENDING</li> <li>CONTIONAL_SUCCESS</li> <li>REJECTED</li> <li>FAILED</li> <li>SOFT_REJECTED</li></ul> <p><strong>Some Response Examples</strong></p> <p><strong>CKYC OTP Triggered</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;action&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SUBMIT_CKYC_OTP&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;FB_7wkDTScOpf9wCnrIjhEh&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;e58cf4f5-648d-46f2-adc6-dc9e4dde300f&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;results&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ACTION_PENDING&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GKD-S-001&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Invalid CKYC OTP</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;action&quot;</span><span class="token operator">:</span> <span class="token string">&quot;INVALID_CKYC_OTP&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;FB_7wkDTScOpf9wCnrIjhEh&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;e58cf4f5-648d-46f2-adc6-dc9e4dde300f&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;results&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ACTION_PENDING&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GKD-S-001&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>CKYC Failed</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;action&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;results&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;FAILED&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CKYC_FAILED&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GKD-E-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>OKYC Extraction and Name Checks Complete</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;action&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;personalKYC&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;address&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;city&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Khamgaon&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;country&quot;</span><span class="token operator">:</span> <span class="token string">&quot;INDIA&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;district&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Buldana&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;landmark&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Shakuntal Nursing Home&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;line1&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some line 1&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;line2&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some line 2&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;locality&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Shriram Chowk, Farshi&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;pincode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;pincode&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;state&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Maharashtra&quot;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;dob&quot;</span><span class="token operator">:</span> <span class="token string">&quot;YYYY-MM-DD&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;gender&quot;</span><span class="token operator">:</span> <span class="token string">&quot;MALE&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;First Last Name&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;OKYC_DIGILOCKER&quot;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;results&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;dobMatch&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;faceLiveliness&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;faceMatch&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;nameMatch&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;outputVariables&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+            <span class="token property">&quot;manualReviewRequired&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;udyamStatus&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Y&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;APPROVED&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GKD-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>CKYC Extraction/ OKYC Extraction / Selfie Verification Ongoing</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;action&quot;</span><span class="token operator">:</span> <span class="token string">&quot;WAIT&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;personalKYC&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PROCESSING&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GKD-S-001&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>OKYC Failure</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;action&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;results&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;FAILED&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GKD-E-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Possible Message Values</strong></p> <table><thead><tr><th>Message</th> <th>Description</th></tr></thead> <tbody><tr><td>PAN_DATA_MISMATCH</td> <td>DOB mismatch between Aadhaar and PAN</td></tr> <tr><td>NAME_MISMATCH</td> <td>Name mismatch between Aadhaar and Loan Application Name</td></tr> <tr><td>DIGITAL_SIGNATURE_REJECTED</td> <td>Invalid Digital Signature in the Aadhaar XML file</td></tr> <tr><td>FACE_MISMATCH</td> <td>Aadhaar selfie does not match with uploaded selfie</td></tr> <tr><td>LIVENESS_REJECT</td> <td>Selfie not live</td></tr> <tr><td>MANUAL_REVIEW_REQUIRED</td> <td>Application is in manual qc</td></tr> <tr><td>MANUAL_KYC_REJECT</td> <td>Application is rejected from manual qc due to kyc name mis match</td></tr> <tr><td>MANUAL_PENNYDROP_REJECT</td> <td>Application is rejected from manual qc due to peny drop name (account holder name) mis match</td></tr></tbody></table> <h2 id="trigger-agreement-signing-api"><a href="#trigger-agreement-signing-api" class="header-anchor">#</a> Trigger Agreement Signing API</h2> <ul><li><strong>Method:</strong> POST</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/loan/agreement</code></li></ul> <p><strong>Sample Request</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span><span class="token string">&quot;some_customerID&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;program&quot;</span><span class="token operator">:</span><span class="token string">&quot;EDI&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Success Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_reference_id&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TAS-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Failure Response (Agreement Not Uploaded)</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;agreement document not found&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TAS-E-001&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="get-agreement-signing-results-api"><a href="#get-agreement-signing-results-api" class="header-anchor">#</a> Get Agreement Signing Results API</h2> <ul><li><strong>Method:</strong> GET</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/loan/agreement?referenceID=some_reference_id</code></li></ul> <p>This API returns the status of the agreement signing. Possible statuses:</p> <ul><li>PROCESSING</li> <li>SUCCESS</li> <li>REJECTED</li> <li>FAILED</li></ul> <p><strong>Successful Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SUCCESS&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;agreementURL&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_s3_url&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GAS-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Processing Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PROCESSING&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;agreementURL&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GAS-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Failed Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;FAILED&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;agreementURL&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GAS-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Rejected Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;REJECTED&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;agreementURL&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GAS-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="trigger-disbursal-api"><a href="#trigger-disbursal-api" class="header-anchor">#</a> Trigger Disbursal API</h2> <ul><li><strong>Method:</strong> POST</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/loan/disburse</code></li></ul> <p><strong>Request</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_customerID&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;program&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EDI&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;some_reference_id&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TDB-S-200&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="get-disbursal-status-api"><a href="#get-disbursal-status-api" class="header-anchor">#</a> Get Disbursal Status API</h2> <ul><li><strong>Method:</strong> GET</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/loan/disburse?referenceID=some_reference_id</code></li></ul> <p><strong>Successful Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;utrNumber&quot;</span><span class="token operator">:</span> <span class="token string">&quot;someUTR&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;disbursedAt&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2024-01-25T23:00:54.963518+05:30&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;disbursedAmount&quot;</span><span class="token operator">:</span> <span class="token number">5000</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;loanAccountNumber&quot;</span><span class="token operator">:</span> <span class="token string">&quot;someLoanAccountNumber&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SUCCESS&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SUCCESS&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GDB-S-200&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Processing Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;someCustomerId&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;message&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;referenceID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;someReferenceId&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PROCESSING&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;statusCode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GDB-S-200&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="session-api"><a href="#session-api" class="header-anchor">#</a> Session API</h2> <p>Session API will return the URL for the part of the journey that happens on ABFL UI.
+It will include steps such as KYC, Pennydrop, NACH, Agreement etc.</p> <ul><li><strong>Method:</strong> POST</li> <li><strong>URL:</strong> <code>&lt;baseurl&gt;/v2/user/session</code></li></ul> <p><strong>Sample Request</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;customerID&quot;</span><span class="token operator">:</span> <span class="token string">&quot;somecustomerid&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;redirectURL&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://yoururl/redirect/to/after/user/exits&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><table><thead><tr><th>Field</th> <th>Type</th> <th>Description</th> <th>Mandatory</th> <th>Validations</th></tr></thead> <tbody><tr><td>customerID</td> <td>String</td> <td>Unique identifier of a customer used in create user API</td> <td>Yes</td> <td></td></tr> <tr><td>redirectURL</td> <td>String</td> <td>Partner return URL where the user will be redirected after completing journey on Finbox UI.</td> <td>Yes</td> <td></td></tr></tbody></table> <p><strong>Sample Response</strong></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://lendingwebuat.finbox.in/session/167af08b-b33f-47f3&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;error&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PSS-S-000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="generic-status-codes"><a href="#generic-status-codes" class="header-anchor">#</a> Generic Status Codes</h2> <table><thead><tr><th>Case</th> <th>Codes</th></tr></thead> <tbody><tr><td>Generic Failure</td> <td>FBX-E-000</td></tr> <tr><td>Request Validation Failed</td> <td>FBX-E-001</td></tr> <tr><td>Internal Issues</td> <td>FBX-E-002</td></tr> <tr><td>Timed Out</td> <td>FBX-E-003</td></tr> <tr><td>Too Many Requests</td> <td>FBX-E-004</td></tr> <tr><td>Unauthorised Request</td> <td>FBX-E-005</td></tr> <tr><td>User Not Found</td> <td>FBX-E-006</td></tr> <tr><td>Invalid Program</td> <td>FBX-E-007</td></tr> <tr><td>Invalid Reference ID</td> <td>FBX-E-008</td></tr> <tr><td>Missing Required Key</td> <td>FBX-E-009</td></tr> <tr><td>Invalid User State</td> <td>FBX-E-010</td></tr> <tr><td>User Disqualified</td> <td>FBX-E-011</td></tr> <tr><td>Lender API Failure</td> <td>FBX-E-012</td></tr> <tr><td>Invalid File</td> <td>FBX-E-013</td></tr> <tr><td>Customer ID Required</td> <td>FBX-E-014</td></tr> <tr><td>Request Already Reported</td> <td>FBX-S-208</td></tr></tbody></table></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">7/22/2025, 4:02:42 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/middleware/lender-prism.html" class="prev">
+        Overview &amp; Integration Types
+      </a></span> <span class="next"><a href="/middleware/appendix.html">
+        Appendix
+      </a>
+      →
+    </span></p></div> <div class="footer" data-v-692ea4ed><p data-v-692ea4ed><span class="item" data-v-692ea4ed>Copyright © 2025</span> <span class="item" data-v-692ea4ed>Moshpit Technologies Pvt. Ltd.</span></p></div></main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.b717c1a4.js" defer></script><script src="/assets/js/4.7f609412.js" defer></script><script src="/assets/js/2.a409744d.js" defer></script><script src="/assets/js/1.9be25c31.js" defer></script><script src="/assets/js/71.f591ff88.js" defer></script>
+  </body>
+</html>
