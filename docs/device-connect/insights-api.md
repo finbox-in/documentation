@@ -52,6 +52,9 @@ x-api-key: XXXX-XXXX-XXXX
 
 **Request Body**
 
+<CodeSwitcher :languages="{android: 'Android', ios: 'iOS', web: 'Web'}">
+<template v-slot:android>
+
 ```json
 {
     "customer_id": "1234ABCD4567",
@@ -59,6 +62,31 @@ x-api-key: XXXX-XXXX-XXXX
     "salt": "5vVMNofMy5kQXx647sBdYBoMolMb1GGBSYLkzwaa9v8="
 }
 ```
+
+</template>
+<template v-slot:ios>
+
+```json
+{
+    "customer_id": "1234ABCD4567",
+    "salt": "5vVMNofMy5kQXx647sBdYBoMolMb1GGBSYLkzwaa9v8=",
+    "version": "ios"
+}
+```
+
+</template>
+<template v-slot:web>
+
+```json
+{
+    "customer_id": "1234ABCD4567",
+    "version": "web",
+    "salt": "5vVMNofMy5kQXx647sBdYBoMolMb1GGBSYLkzwaa9v8="
+}
+```
+
+</template>
+</CodeSwitcher>
 
 ## Response
 
