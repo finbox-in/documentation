@@ -53,7 +53,7 @@ HTTP Status code: 202 Accepted
 |Code|Message|HTTP status code|
 |------------------------------| ----------------------------------| ---------------|
 |SESSION_NOT_FOUND|The provided session ID is invalid|404|
-|DUPLICATE_PROCESSING_REQUEST|Request for processing have already been initiated|409|
+|DUPLICATE_PROCESSING_REQUEST|Request for processing have already been initiated|400|
 |SESSION_DELETED|The provided session ID has been deleted|410|
 |ACCESS_DENIED|Authentication credentials were not provided|403|
-
+|UNPARSABLE_STATEMENTS|The uploaded statements are not parsable|400|

@@ -1,10 +1,10 @@
-# BankConnect: Flutter
+# BankConnect: Ionic Capacitor
 
-BankConnect Flutter SDK helps user submits their bank statements via upload or net banking credentials in your Android application.
+Bank Connect Ionic Capacitor SDK helps user submits their bank statements via upload or net banking credentials in your Android application.
 
 ## Requirements
 
-Bank Connect Flutter SDK works on Android 5.0+ (API level 21+), on Java 8+ and AndroidX. In addition to the changes, enable desugaring so that our SDK can run smoothly on Android 7.0 and versions below.
+Bank Connect SDK works on Android 5.0+ (API level 21+), Java 8+ and AndroidX. In addition to the changes, enable desugaring to support older versions.
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',groovy:'Groovy'}">
 <template v-slot:kotlin>
@@ -81,11 +81,61 @@ SECRET_KEY=<SECRET_KEY>
 BC_SDK_VERSION=<BC_SDK_VERSION>
 ```
 
-Add plugin dependency in `pubspec.yaml` file:
+In the project level `build.gradle` file or `settings.gradle`, add the repository URLs to all `allprojects` block or `repositories` block inside `dependencyResolutionManagement`.
 
-```yml
-finbox_bc_plugin: any
+<CodeSwitcher :languages="{kotlin:'Kotlin',groovy:'Groovy'}">
+<template v-slot:kotlin>
+
+```kotlin
+maven {
+    setUrl("s3://risk-manager-android-sdk/artifacts")
+    credentials(AwsCredentials::class) {
+        accessKey = <ACCESS_KEY>
+        secretKey = <SECRET_KEY>
+    }
+    content {
+        includeGroup("in.finbox.bankconnect")
+    }
+}
 ```
+
+</template>
+<template v-slot:groovy>
+
+```groovy
+maven {
+    url "s3://risk-manager-android-sdk/artifacts"
+    credentials(AwsCredentials) {
+        accessKey = <ACCESS_KEY>
+        secretKey = <SECRET_KEY>
+    }
+    content {
+        includeGroup("in.finbox.bankconnect")
+    }
+}
+```
+
+</template>
+</CodeSwitcher>
+
+Add plugin dependency
+
+<CodeSwitcher :languages="{npm:'NPM',yarn:'Yarn'}">
+<template v-slot:yarn>
+
+```sh
+yarn add ionic-bank-connect-sdk
+```
+
+</template>
+<template v-slot:npm>
+
+```sh
+yarn add ionic-bank-connect-sdk
+```
+
+</template>
+</CodeSwitcher>
 
 ::: warning NOTE
 Following will be shared by FinBox team at the time of integration:
@@ -93,6 +143,7 @@ Following will be shared by FinBox team at the time of integration:
 - `ACCESS_KEY`
 - `SECRET_KEY`
 - `BC_SDK_VERSION`
+- `CLIENT_API_KEY`
 :::
 
 ## Integration Workflow
@@ -104,25 +155,29 @@ The diagram below illustrates the integration workflow in a nutshell:
 
 We have hosted a sample project on GitHub, you can check it out here:
 <div class="button_holder">
-<a class="download_button" target="_blank" href="https://github.com/finbox-in/bank-connect-sample-flutter">Open GitHub Repository</a>
+<a class="download_button" target="_blank" href="https://github.com/finbox-in/bank-connect-sample-ionic-capacitor">Open GitHub Repository</a>
 </div>
 
-## Show SDK Screen
+## Build Bank Connect
 
-```dart
-FinBoxBcPlugin.initSdk(
-    "CLIENT_API_KEY",
-    "FROM_DATE",                        // Optional: Default 6 months old date
-    "TO_DATE",                          // Optional: Default value 1 day less than current date
-    "BANK_NAME",                        // Optional: Short code of the bank
-    "MODE",                             // Optional: PDF Mode
-    "MOBILE_NUMBER",                    // Optional: Mobile number
-    "JOURNEY_MODE",                     // Optional: Multi PDF journey
-    "AA_JOURNEY_MODE",                  // Optional: Recurring AA pulls
-    "AA_RECURRING_TENURE_MONTH_COUNT",  // Optional: Consent duration is valid for 3 months
-    "AA_RECURRING_FREQUENCY_UNIT",      // Optional: Frequency value is in Days
-    "AA_RECURRING_FREQUENCY_VALUE"      // Optional: Number of times to pull the data
-);
+Build the `IonicBankConnectSdk` object by passing `apiKey`, `linkId`, `fromDate`, `toDate`, `bank`, `mode` and others.
+
+```javascript
+// Build BankConnect
+IonicBankConnectSdk.buildBankConnect(options: {
+    apiKey: "CLIENT_API_KEY",
+    linkId: "LINK_ID",
+    fromDate: "FROM_DATE",                                          // Optional: Default 6 months old date
+    toDate: "TO_DATE",                                              // Optional: Default value 1 day less than current date
+    bank: "BANK_NAME",                                              // Optional: Short code of the bank
+    mode: "MODE",                                                   // Optional: PDF Mode
+    mobileNumber: "MOBILE_NUMBER",                                  // Optional: Mobile number
+    journeyMode: "JOURNEY_MODE",                                    // Optional: Multi PDF journey
+    aaJourneyMode: "AA_JOURNEY_MODE",                               // Optional: Recurring AA pulls
+    aaRecurringTenureMonthCount: "AA_RECURRING_TENURE_MONTH_COUNT", // Optional: Consent duration is valid for 3 months
+    aaRecurringFrequencyUnit: "AA_RECURRING_FREQUENCY_UNIT",        // Optional: Frequency value is in Days
+    aaRecurringFrequencyValue: "AA_RECURRING_FREQUENCY_VALUE",      // Optional: Number of times to pull the data
+});
 ```
 
 | Builder Property | Description | Required |
@@ -154,38 +209,24 @@ Once the above statement is added, a series of checks are done to make sure the 
 Once all these conditions are met, the BankConnect object will build.
 :::
 
+## Show SDK Screen
+
+Start Bank Screen and listen for the result
+
+```javascript
+// Show BankConnect UI
+IonicBankConnectSdk.showBankConnect((error: any) => {
+    // error callback
+  }, (entityId: any, sessionId: any) => {
+    // Success callback
+  });
+```
+
 ## Parse Results
 
-Once the user navigates through the banks and uploads the bank statement, the sdk automatically closes `FinBoxBcPlugin` and returns the result inside `_getJourneyResult`.
+Once the user navigates through the banks and uploads the bank statement, the sdk automatically closes `IonicBankConnectSdk` and returns the results.
 
-Set method handler inside `build` method of your home page to receive the results
+Success callback contains `entityId` (or `sessionId`). A successful upload contains a unique `entityId` (or `sessionId`).
 
-```dart
-FinBoxBcPlugin.platform.setMethodCallHandler(_getJourneyResult);
-```
-
-`call.arguments` contains `linkId` and `entityId` (or `sessionId`). A successful upload contains a unique `entityId` (or `sessionId`).
-
-- linkId - Unique id passed when building the Bank Connect object
 - entityId - Unique id of a successful statement upload during Entity flow
 - sessionId - Session id of a successful statement upload during Session flow
-
-```dart
-static Future<void> _getJourneyResult(MethodCall call) async {
-    if (call.method == 'getJourneyResult') {
-        var json = call.arguments
-    }
-}
-```
-
-Following json will be received
-
-```json
-{
-    "linkId": "link_id",
-    "entityId": "entity_id", // Entity id will be available only for entity flow
-    "sessionId": "session_id", // Session Id will be available only for session flow
-    "error_type": "error_code",
-    "message": "msg"
-}
-```

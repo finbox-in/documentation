@@ -256,6 +256,36 @@ module.exports = {
                 {
                   title: 'Frontend Integration',
                   path: '/session-flow/submit-data-frontend.html',
+                  children: [
+                    {
+                      title: 'JavaScript SDK',
+                      path: '/session-flow/javascript.html'
+                    },
+                    {
+                      title: 'Android SDK',
+                      path: '/session-flow/android.html'
+                    },
+                    {
+                      title: 'iOS SDK',
+                      path: '/session-flow/ios.html'
+                    },
+                    {
+                      title: 'React Native SDK',
+                      path: '/session-flow/react-native.html'
+                    },
+                    {
+                      title: 'Flutter SDK',
+                      path: '/session-flow/flutter.html'
+                    },
+                    {
+                      title: 'Cordova SDK',
+                      path: '/session-flow/cordova.html'
+                    },
+                    {
+                      title: 'Ionic/Capacitor SDK',
+                      path: '/session-flow/ionic-capacitor.html'
+                    },
+                  ]
                 },
                 {
                   title: 'Backend Integration',
