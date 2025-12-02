@@ -25,14 +25,16 @@ POST **{{$page.frontmatter.base_url}}/{{$page.frontmatter.version}}/statement/up
 
 Request header `x-api-key` with API Key as value must be present in request.
 
-### Parameters
-| Name | Type | Description | Required  | Default |
-| - | - | - | - | - |
-| file | file  | the statement pdf file | Yes | - |
-| bank_name | string | a valid [bank identifier](/session-flow/appendix.html#bank-identifiers) | Yes | - |
-| session_id | string | a `session_id` against which you want to upload the statement | Yes | - |
-| upload_type | string | The format of file that is being uploaded (PDF, BASE64) | Yes | - |
-| pdf_password | string | password for the pdf in case it is password protected | No | - |
+## Request Parameters
+
+| Name         | Type   | Required | Default | Description |
+|--------------|--------|----------|---------|-------------|
+| file         | file   | Conditional | — | The bank statement file (PDF) uploaded as a form-data file. **Required if `file_url` is not provided.** |
+| file_url     | string | Conditional | — | Publicly accessible URL of the file to be downloaded by the system. **Required if `file` is not provided.** |
+| bank_name    | string | No        | — | A valid [bank identifier](/session-flow/appendix.html#bank-identifiers). Optional for **bankless uploads**. If provided, it must match the detected bank in the uploaded statement. |
+| session_id   | string | Yes       | — | Session identifier used to group multiple uploads under a single analysis session. |
+| upload_type  | string | Yes       | — | Format of the uploaded file. Allowed values: **PDF**, **BASE64**. Determines whether the system expects a file blob or a Base64 string. |
+| pdf_password | string | No        | — | Password for password-protected PDFs. If required and missing/empty/incorrect, the request fails with `PASSWORD_INCORRECT`. |
 
 
 **Query Parameters:** Optional parameters appended to the URL like
@@ -112,24 +114,58 @@ statements.
 
 ```
 
-### List of API Error Codes
+## Error Scenario Validation Matrix
 
-**The following table lists API error codes applicable to this API.**
 
-|Code|Message|HTTP status code|
-|-------|---------------------------------------------------------------------|--------------------------------------|
-|TRIAL_PERIOD_EXPIRED|Your trial period has expired. Please request FinBox to upgrade your plan|402|
-|INVALID_FILE_OBJECT|This field must be present as a form field. Send request with content type x-www-form-urlencoded or form-data|400|
-|INVALID_FILE_OBJECT|File object is invalid|400|
-|INVALID_FILE_URL|This file url is invalid|400|
-|MISSING_FILE_OBJECT|This file object is required|400|
-|INVALID_BASE_64|Invalid Base 64 string|400|
-|INVALID_ACCOUNT_CATEGORY|account_category' should be 'SAVINGS', 'CURRENT' or 'OVERDRAFT'|400|
-|PASSWORD_INCORRECT|The provided password is incorrect|400|
-|STATEMENT_UNSUPPORTED_FORMAT|The statement format is not supported|400|
-|BANK_NAME_UNDETECTED|Unable to detect bank. Please provide BANK NAME.|400|
-|PDF_IS_IMAGE|Scanned images are not supported|400|
-|BANK_NAME_MISMATCH|Not {selected_bank_name} bank statement|400|
-|OUT_OF_DATE_RANGE|No transactions in expected date range|400|
-|STATEMENT_DUPLICATE|A duplicate statement has been detected|400|
+### 1. Session & Authentication Errors
+
+| Scenario | Validation | Error Code | Error Message | HTTP Status Code |
+|---------|------------|------------|---------------|------------------|
+| Expired/Invalid session | session expired/invalid | SESSION_EXPIRED | This session has expired | 400 |
+| Trial period expired | user trial expired | TRIAL_PERIOD_EXPIRED | Your trial period has expired. Please request FinBox to upgrade your plan | 402 |
+| Invalid API key / missing auth | invalid x-api-key / unauthorized route | INVALID_API_KEY / Auth error | Authentication credentials were not provided. / Route not allowed | 403 |
+
+
+### 2. File & Upload Errors
+
+| Scenario | Validation | Error Code | Error Message | HTTP Status Code |
+|---------|------------|------------|---------------|------------------|
+| Missing file object | no file field present | MISSING_FILE_OBJECT | This file object is required | 400 |
+| File not sent as proper form field | not in form-data/x-www-form-urlencoded | INVALID_FILE_OBJECT | This field must be present as a form field. Send request with correct content type | 400 |
+| Invalid file object | corrupted/unreadable file | INVALID_FILE_OBJECT | File object is invalid | 400 |
+| Empty file | file exists but size = 0 | EMPTY_FILE | File object is empty | 400 |
+| Invalid file URL | invalid/unreachable URL | INVALID_FILE_URL | This file url is invalid | 400 |
+| Invalid BASE64 string | malformed base64 string | INVALID_BASE_64 | Invalid Base 64 string | 400 |
+
+
+### 3. PDF-Specific Errors
+
+| Scenario | Validation | Error Code | Error Message | HTTP Status Code |
+|---------|------------|------------|---------------|------------------|
+| Incorrect PDF password | wrong password | PASSWORD_INCORRECT | The provided password is incorrect | 400 |
+| Empty PDF password | password = "" | PASSWORD_INCORRECT | The provided password is incorrect | 400 |
+| Missing PDF password | password required but not provided | PASSWORD_INCORRECT | The provided password is incorrect | 400 |
+| PDF is scanned / image-only | no text layer present | PDF_IS_IMAGE | Scanned images are not supported | 400 |
+
+
+### 4. Statement Parsing Errors
+
+| Scenario | Validation | Error Code | Error Message | HTTP Status Code |
+|---------|------------|------------|---------------|------------------|
+| Unsupported statement format | parser cannot detect structure | STATEMENT_UNSUPPORTED_FORMAT | The statement format is not supported | 400 |
+| Duplicate statement | previously uploaded | STATEMENT_DUPLICATE | A duplicate statement has been detected | 400 |
+| Out of date range | from_date / to_date outside allowed span | OUT_OF_DATE_RANGE | No transactions in expected date range | 400 |
+
+
+### 5. Rule Validation Errors
+
+| Scenario | Validation | Error Code | Error Message | HTTP Status Code |
+|---------|------------|------------|---------------|------------------|
+| Bank name undetected | system unable to detect bank | BANK_NAME_UNDETECTED | Unable to detect bank. Please provide BANK NAME. | 400 |
+| Bank name mismatch | selected ≠ detected | BANK_NAME_MISMATCH | Not {selected_bank_name} bank statement | 400 |
+| Invalid account category | account_category not in allowed list | INVALID_ACCOUNT_CATEGORY | Account category is invalid | 400 |
+| Session flow not enabled |This route is not available for the organisation as per configuration | (validation error in response body) | Route not allowed | 403 |
+| Invalid/unsupported bank_name (not in allowed list) | bank_name not in allowed strings | (validation error in response body) | Please use following bank strings: [...] | 400 |
+
+
 

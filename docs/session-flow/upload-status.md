@@ -47,47 +47,50 @@ Request headers `x-api-key` with API Key as value and `server-hash` with Server 
 **Receiving Webhook Success Payload:**
 
 ```json
-{
-  "session_id": "409ed817-b824-4818-a7f7-dc532ce0d8fc",
-  "event_name": "SESSION_REQUIREMENT_COMPLETION_NOTIFICATION/SESSION_EXPIRY_NOTIFICATION",
-  "message": "Session expired/Upload Completed",
-  "accounts": [
-    {
-      "account_id": "814d062e-1c36-409f-9f9c-acb32e7984b0",
-      "account_number": "5413699704",
-      "bank_name": "kotak",
-      "created_at": "2024-04-26 12:25:57",
-      "last_updated_at": "2024-04-26 12:26:27",
-      "statements": [
-        {
-          "statement_id": "fe49d6a6-1c0e-4e6d-911a-c38b6a4f0d04",
-          "statement_status": "completed",
-          "error_code": null,
-          "error_message": null,
-          "source": "pdf",
-          "created_at": "2024-04-26 12:25:56.172124+00:00"
-        }
-      ],
-      "account_status": "PARTIAL",
-      "months": [
-        "2023-10",
-        "2023-11",
-        "2023-12",
-        "2024-01",
-        "2024-02",
-        "2024-03",
-        "2024-04"
-      ]
-    }
-  ],
-  "session_date_range": {
-    "from_date": "25/10/2023",
-    "to_date": "25/04/2024"
-  }
-}
+{ 
+
+  "session_id": "136b1aa3-4610-4d0a-89f3-03078a2fce92", 
+  "event_name": "SESSION_REQUIREMENT_COMPLETION_NOTIFICATION/SESSION_EXPIRY_NOTIFICATION", 
+  "message": "Upload Completed", 
+  "accounts": [ 
+    { 
+      "account_id": "d35b9df1-871d-43d1-b6c1-67ded2c2e8e5", 
+      "account_number": "XXXXXXXXXXXX3135", 
+      "bank_name": "axis", 
+      "created_at": "2025-11-13 06:48:44", 
+      "last_updated_at": "2025-11-13 06:48:44", 
+      "statements": [ 
+        { 
+          "statement_id": "bc04560a-d06c-4a51-b412-031b692ecf6f", 
+          "statement_status": "completed", 
+          "error_code": null, 
+          "error_message": null, 
+          "source": "pdf", 
+          "upload_file_name": "168c64e6-3d12-40c0-9ffb-2c02d59fe84c_axis.pdf", 
+          "statement_date_range": { 
+            "from_date": "11/08/2025", 
+            "to_date": "10/11/2025" 
+          }, 
+          "created_at": "2025-11-13 06:48:43.660968+00:00" 
+        } 
+      ], 
+      "account_status": "PARTIAL", 
+      "months": [ 
+        "2025-08", 
+        "2025-09", 
+        "2025-10", 
+        "2025-11" 
+      ], 
+      "missing_data": [] 
+    } 
+  ], 
+  "session_date_range": { 
+    "from_date": "11/08/2025", 
+    "to_date": "11/11/2025" 
+  } 
+} 
 
 ```
-
 
 ### 2. Polling:
 
@@ -112,41 +115,113 @@ Request headers `x-api-key` with API Key as value and `server-hash` with Server 
 On successful API call, it gives a 200 HTTP code with a response in following format:
 
 ```json
-{
-    "session_id": "",
-    "session_date_range": {
-        "from_date": "",
-        "to_date": ""
-    },
-    "upload_status": "NO_UPLOAD/IN_PROGRESS/COMPLETED",
-    "accounts": [
-        {
-            "account_id": "8702145a-aaa3-4ee0-acb7-9a328b54905a",
-            "account_number": "XXXXXXXXXX",
-            "bank_name": "icici",
-            "account_status": "PARTIAL/COMPLETED",
-            "months": [],
-            "created_at": "2024-04-16 07:47:42",
-            "last_updated_at": "2024-04-16 07:48:21",
-            "statements": [
-                {
-                    "statement_id": "567700a6-570d-4f75-ae60-d79357dabdb4",
-                    "statement_status": "completed",
-                    "error_code": "",
-                    "error_message": "",
-                    "source": "pdf",
-                    "statement_date_range": {
-                        "from_date": "",
-                        "to_date": ""
-                    },
-                    "created_at": "2024-04-16T07:47:40.806223Z"
-                }
-            ]
-        }
-    ]
-}
-
+    "session_id": "136b1aa3-4610-4d0a-89f3-03078a2fce92", 
+    "session_date_range": { 
+        "from_date": "11/08/2025", 
+        "to_date": "11/11/2025" 
+    }, 
+    "upload_status": "COMPLETED", 
+    "session_expiry_timestamp": "2025-11-13 07:48:34", 
+    "accounts": [ 
+        { 
+            "account_id": "d35b9df1-871d-43d1-b6c1-67ded2c2e8e5", 
+            "account_number": "924010040573135", 
+            "bank_name": "axis", 
+            "created_at": "2025-11-13 06:48:44", 
+            "last_updated_at": "2025-11-13 06:49:04", 
+            "statements": [ 
+                { 
+                    "statement_id": "bc04560a-d06c-4a51-b412-031b692ecf6f", 
+                    "statement_status": "completed", 
+                    "error_code": null, 
+                    "error_message": null, 
+                    "source": "pdf", 
+                    "upload_file_name": "168c64e6-3d12-40c0-9ffb-2c02d59fe84c_axis.pdf", 
+                    "statement_date_range": { 
+                        "from_date": "11/08/2025", 
+                        "to_date": "10/11/2025" 
+                    }, 
+                    "created_at": "2025-11-13 06:48:43.660968+00:00" 
+                } 
+            ], 
+            "account_status": "PARTIAL", 
+            "months": [ 
+                "2025-08", 
+                "2025-09", 
+                "2025-10", 
+                "2025-11" 
+            ], 
+            "missing_data": [ 
+                { 
+                    "from_date": "2025-11-03", 
+                    "to_date": "2025-11-11" 
+                } 
+            ], 
+            "name": "", 
+            "account_type": "", 
+            "full_bank_name": "Axis Bank" 
+        } 
+    ], 
+    "error": {} 
+} 
 ```
+
+## Upload Status Evaluation Logic (Based on the API Response)
+
+For the provided API response, the `upload_status` has been returned as **"COMPLETED"**.  
+The following logic is applied to determine the correct upload status.
+
+---
+
+### 1. Status Determination Logic
+
+#### **If the session/entity exists:**
+
+##### **a. COMPLETED (or Processing Requested)**
+The status is marked as **COMPLETED** if:
+- The completion webhook has already been sent, **or**
+- Processing for the entity/session has been explicitly requested.
+
+##### **b. EXPIRED**
+The status is marked **EXPIRED** if:
+- The session/entity has passed its expiry timestamp **without completing processing**.
+
+##### **c. NO UPLOADS**
+The status is **NO UPLOADS** if:
+- The entity/session is valid (not expired), **but**  
+- No account data or statement uploads exist yet.
+
+##### **d. IN PROGRESS**
+Status becomes **IN PROGRESS** if:
+- Statement uploads have started, **but**
+- Acceptance criteria are not yet fulfilled, **and**
+- The entity/session has not expired.
+
+---
+
+#### **If the session/entity cannot be retrieved**
+The status defaults to **NO UPLOADS**.
+
+---
+
+### 2. How This Logic Applies to the Given Response
+
+Based on the sample API response:
+
+- The session object is present (`session_id` is valid).  
+- Account-level and statement-level data are available.  
+- The system has already received a processing/completion trigger, which results in:  
+  **`upload_status: "COMPLETED"`**
+
+Even though:
+- The account is marked as **PARTIAL**, and  
+- Some `missing_data` ranges are present,  
+
+…the overall status is still **COMPLETED** because, as per the ordering rules, once the completion webhook/trigger is registered, it overrides partial or incomplete data conditions.
+
+---
+
+
 
 **Error Response:**
 
@@ -168,4 +243,5 @@ On successful API call, it gives a 200 HTTP code with a response in following fo
 |SESSION_NOT_FOUND|The provided session ID is invalid|404|
 |SESSION_DELETED|The provided session ID has been deleted|410|
 |ACCESS_DENIED|Authentication credentials were not provided|403|
+|KEY_REQUIRED|valid session_id is required|400|
 

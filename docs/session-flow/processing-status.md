@@ -46,38 +46,48 @@ Request headers `x-api-key` with API Key as value and `server-hash` with Server 
 **Receiving Webhook Success Payload:**
 
 ```json
-{
-  "session_id":"uuid4",
-  "event_name": "ENRICHMENT_NOTIFICATION",
-  "accounts":[
-    {
-      "bank_name": "sbi",
-      "account_id" :"account_uuid4",
-      "account_status" :"completed",
-      "error_code" : null,
-      "error_message": null
-    }
-  ]
-}
-
+{ 
+  "session_id": "c282b2cd-9f87-4ba9-9f73-964bdbd1263b", 
+  "insights_available": false, 
+  "accounts": [ 
+    { 
+      "name": "XXXXXXXXX", 
+      "account_category": "individual", 
+      "account_id": "64d79813-d882-4c15-9ced-383e463678f8", 
+      "bank_name": "iob", 
+      "error_code": "", 
+      "error_message": "", 
+      "account_status": "completed", 
+      "attempt_types": [ 
+        "PDF" 
+      ] 
+    } 
+  ], 
+"event_name": "ENRICHMENT_NOTIFICATION" 
+} 
 ```
 **Receiving Webhook Failure Payload:**
 
 ```json
-{
-  "session_id":"abcd",
-  "event_name": "ENRICHMENT_NOTIFICATION",
-  "accounts":[
-    {
-      "bank_name": "sbi",
-      "account_id" :"account_uuid4",
-      "account_status" :"failed",
-      "error_code" : "MISSING_TRANSACTIONS",
-      "error_message": "One or more transactions are missing in the specified date range"
-    }
-  ]
-}
-
+{ 
+  "session_id": "c282b2cd-9f87-4ba9-9f73-964bdbd1263b", 
+  "insights_available": false, 
+  "accounts": [ 
+    { 
+      "name": "XXXXXXXXX", 
+      "account_category": "individual", 
+      "account_id": "64d79813-d882-4c15-9ced-383e463678f8", 
+      "bank_name": "iob", 
+      "error_code": "UNPARSABLE", 
+      "error_message": "Failed to process because of an unparsable statement", 
+      "account_status": "failed", 
+      "attempt_types": [ 
+        "PDF" 
+      ] 
+    } 
+  ], 
+"event_name": "ENRICHMENT_NOTIFICATION" 
+} 
 ```
 
 **Account Status:**
