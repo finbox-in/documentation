@@ -19,10 +19,16 @@ API authentication is managed using the **SERVER_API_KEY** provided by FinBox. S
 
 ## Endpoints
 
-| Insights | Endpoint | Request Type | IP Whitelisting |
-| - | - | -| - |
-| Production | **https://insights.finbox.in/v2/risk/predictors** | POST | Yes |
-| Development | **https://insights.finbox.in/staging/risk/predictors** | POST |  No |
+| Country | Insights | Endpoint | Request Type | IP Whitelisting |
+| - | - | - | -| - |
+| India | Production | **<https://insights.finbox.in/v2/risk/predictors>** | POST | Yes |
+| India | Development | **<https://insights.finbox.in/staging/risk/predictors>** | POST |  No |
+| Philippines | Production | **<https://insights.apis-phl.finbox.in/v2/risk/predictors>** | POST | Yes |
+| Philippines | Development | **<https://insights.apis-phl.finbox.in/staging/risk/predictors>** | POST |  No |
+| Vietnam | Production | **<https://insights.apis-vnm.finbox.in/v2/risk/predictors>** | POST | Yes |
+| Vietnam | Development | **<https://insights.apis-vnm.finbox.in/staging/risk/predictors>** | POST |  No |
+| Indonesia | Production | **<https://insights.apis-idn.finbox.in/v2/risk/predictors>** | POST | Yes |
+| Indonesia | Development | **<https://insights.apis-idn.finbox.in/staging/risk/predictors>** | POST |  No |
 
 ## Request
 
