@@ -48,7 +48,7 @@ Request headers `x-api-key` with API Key as value and `server-hash` with Server 
 ```json
 { 
   "session_id": "c282b2cd-9f87-4ba9-9f73-964bdbd1263b", 
-  "insights_available": false, 
+  "insights_available": true, 
   "accounts": [ 
     { 
       "name": "XXXXXXXXX", 
@@ -89,6 +89,16 @@ Request headers `x-api-key` with API Key as value and `server-hash` with Server 
 "event_name": "ENRICHMENT_NOTIFICATION" 
 } 
 ```
+
+::: warning NOTE
+
+- The `insights_available` indicates whether insights can be generated for the account.  
+Its value depends on the `to_reject_account` configuration:
+
+- **If enabled** → accounts with inconsistencies or unparsable data return `false`.  
+- **If disabled** → the flag remains `true`.
+
+  :::
 
 **Account Status:**
 
