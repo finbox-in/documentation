@@ -1,6 +1,3 @@
----
-title: RCU Stage 1 Verification
----
 
 <h2>RCU Stage 1 Verification</h2>
 
