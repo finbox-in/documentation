@@ -20,7 +20,6 @@
       <td>All loans</td>
       <td>At disbursal</td>
     </tr>
-
     <tr>
       <td>E-stamp Charge</td>
       <td>
