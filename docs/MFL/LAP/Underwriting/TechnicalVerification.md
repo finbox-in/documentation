@@ -1,6 +1,4 @@
----
-title: Technical Verification
----
+
 
 <h2>Technical Verification Workflow</h2>
 
