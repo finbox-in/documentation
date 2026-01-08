@@ -1,6 +1,4 @@
----
-title: Legal Verification
----
+
 
 <h2>Legal Verification Workflow</h2>
 
