@@ -1,6 +1,3 @@
----
-title: Loan Offer
----
 
 <h2>Loan Offer</h2>
 
