@@ -1,3 +1,5 @@
+
+<h1>DOA: Delegation of Authority</h1>
 <p>
 The loan approval authority is determined based on two key criteria: the loan amount and the associated risk grade (refer to the DOA logic at the bottom of this sheet)
 </p>
