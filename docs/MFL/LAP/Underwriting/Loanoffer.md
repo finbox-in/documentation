@@ -22,7 +22,6 @@
       <strong>Super product:</strong> Default is “LAP” and is auto-populated.
       “Housing loan” is not supported currently.
     </li>
-
     <li>
       <strong>Product:</strong> One of the following can be selected:
       <ul>
@@ -31,7 +30,6 @@
         <li>SBL</li>
       </ul>
     </li>
-
     <li>
       <strong>Sub-product:</strong> One of the following can be selected:
       <ul>
@@ -44,19 +42,17 @@
       </ul>
     </li>
 
-    <li>
+  <li>
       <strong>Scheme:</strong> Based on the selected product and the state where the loan was sourced,
       the BCM is shown eligible schemes as defined in the
       “Product-level scheme collateral policy master” (attached with mail).
       RO login details are used to derive the state.
     </li>
-
     <li>
       <strong>Property type:</strong> Based on product, state, and scheme, the system shows the
       permitted property types as per the
       “Product-level scheme collateral policy master”.
     </li>
-
     <li>
       <strong>Loan purpose:</strong> One of the following can be selected
       (This is the UAT master, Finbox is discussing the prod master with MFL):
@@ -87,7 +83,6 @@
         </li>
       </ul>
     </li>
-
     <li>
       <strong>ROI (%):</strong> The rate of interest the BCM wants to offer.
       The “Product-level scheme collateral policy master” defines threshold minimum and
@@ -102,7 +97,6 @@
         </li>
       </ul>
     </li>
-
     <li>
       <strong>Tenure (months):</strong> The tenure offered.
       The master specifies a maximum permissible tenure based on product/scheme/property
@@ -118,7 +112,7 @@
       </ul>
     </li>
 
-    <li>
+   <li>
       <strong>Tranche type:</strong>
       <ul>
         <li>Single tranche</li>
@@ -126,7 +120,7 @@
       </ul>
     </li>
 
-    <li>
+   <li>
       <strong>FOIR (%):</strong> The BCM manually calculates and enters the FOIR.
       The master defines a maximum permissible FOIR based on product/scheme/property
       type/state etc.
@@ -141,7 +135,7 @@
       </ul>
     </li>
 
-    <li>
+  <li>
       <strong>LTV (%):</strong> Auto-calculated from the loan amount and total property value.
       The master defines a maximum permissible LTV based on product/scheme/property
       type/state etc.
@@ -167,7 +161,6 @@
         </li>
       </ul>
     </li>
-
     <li>
       <strong>Processing fee (%):</strong> The processing fee the BCM wants to offer.
       The permissible range is 2%–3%.
@@ -186,7 +179,6 @@
     <li>
       <strong>Processing fee incl. GST:</strong> Processing fee including 18% GST.
     </li>
-
     <li>
       <strong>EMI:</strong> Calculated as:
       <pre>
@@ -198,7 +190,6 @@ r = ROI (monthly) = ROI / 12
 n = tenure in months
       </pre>
     </li>
-
     <li><strong>Type of interest:</strong> Tiered (currently constant)</li>
     <li><strong>Type of interest tiered:</strong> 5 years + floating combination (currently constant)</li>
     <li><strong>Base interest (%):</strong> 10 (constant)</li>
