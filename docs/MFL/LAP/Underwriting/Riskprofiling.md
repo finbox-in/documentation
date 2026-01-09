@@ -1,9 +1,5 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Risk Profiling – LAP</title>
-</head>
+
 <body>
 
   <h1>Risk Profiling – LAP</h1>
