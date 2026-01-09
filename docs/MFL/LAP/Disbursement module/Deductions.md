@@ -29,14 +29,12 @@
       <td>Only when agreement signing done online</td>
       <td>At disbursal</td>
     </tr>
-
     <tr>
       <td>Insurance Charges</td>
       <td>Total insurance premium (inclusive of 18% GST)</td>
       <td>All loans</td>
       <td>At disbursal</td>
     </tr>
-
     <tr>
       <td>Stamp Duty</td>
       <td>
@@ -47,7 +45,6 @@
       <td>Only when agreement signing done online</td>
       <td>At disbursal</td>
     </tr>
-
     <tr>
       <td>CERSAI Charge</td>
       <td>
@@ -57,7 +54,6 @@
       <td>All loans</td>
       <td>At disbursal</td>
     </tr>
-
     <tr>
       <td>Initial Login Fee</td>
       <td>
@@ -67,7 +63,6 @@
       <td>All loans</td>
       <td>Not adjusted from disbursal</td>
     </tr>
-
     <tr>
       <td>Login Fee Deductible</td>
       <td>
