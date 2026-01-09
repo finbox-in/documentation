@@ -1,115 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Risk Profiling – LAP</title>
+</head>
+<body>
 
+  <h1>Risk Profiling – LAP</h1>
 
-<h2>Risk Profiling</h2>
+  <p>
+    BCM can perform risk profiling either in the <strong>“Under review”</strong> stage or the
+    <strong>“In-principle sanctioned”</strong> stage; it becomes mandatory at the
+    <strong>“In-principle sanctioned”</strong> stage.
+  </p>
 
-<p>
-The BCM can perform <strong>Risk Profiling</strong> either during the
-<strong>“Under review”</strong> stage or the
-<strong>“In-principle sanctioned”</strong> stage.
-Risk profiling becomes <strong>mandatory</strong> at the
-<strong>“In-principle sanctioned”</strong> stage.
-</p>
+  <p>
+    The risk profiling module takes a set of input parameters and, based on a predefined scoring
+    logic, returns an overall risk score and a corresponding risk category.
+  </p>
 
-<h3>Overview</h3>
-<p>
-The risk profiling module evaluates a set of inputs using a predefined scoring
-logic to derive:
-</p>
-<ul>
-  <li>An overall <strong>risk score</strong> (0–100)</li>
-  <li>A corresponding <strong>risk category</strong>: Low, Medium, or High</li>
-</ul>
+  <p>
+    Each input is treated as a question with a response that contributes a specific score, and the
+    sum of these individual scores yields the final risk score (a value between <strong>0–100</strong>)
+    and risk category (<strong>Low</strong>, <strong>Medium</strong>, or <strong>High</strong>).
+    (Logic attached with this mail)
+  </p>
 
-<p>
-Each input is treated as a question with an associated score. The total of all
-individual scores determines the final risk score and category.
-(The detailed logic is maintained externally and shared separately.)
-</p>
+  <h2>Risk Profiling Form</h2>
 
-<h3>Risk Profiling Form</h3>
-<p>
-The BCM completes the risk profiling by filling the form available under the
-<strong>“Manual Credit Review”</strong> tab.
-</p>
+  <p>
+    BCM fills a form on the <strong>“Manual Credit Review”</strong> tab to calculate the risk profile.
+  </p>
 
-<h4>Input Parameters</h4>
-<ul>
-  <li>
-    <strong>Nature of property</strong>:
-    Selected by the BCM from a master list
-  </li>
-  <li>
-    <strong>FOIR</strong>:
-    Auto-fetched by the system from the Loan Offer
-  </li>
-  <li>
-    <strong>LTV</strong>:
-    Auto-fetched by the system from the Loan Offer
-  </li>
-  <li>
-    <strong>Vintage</strong>:
-    Entered manually by the BCM (free-text field)
-  </li>
-  <li>
-    <strong>Occupation type</strong>:
-    Selected as <strong>Salaried</strong> or
-    <strong>Self-employed</strong>
-  </li>
-  <li>
-    <strong>Occupation</strong>:
-    Selected by the BCM from a master list
-  </li>
-  <li>
-    <strong>Guarantor in deal</strong>:
-    Selected as <strong>Yes</strong> or <strong>No</strong>
-  </li>
-</ul>
+  <p>The inputs required to calculate the risk score are:</p>
 
-<h3>Pre-requisites</h3>
-<ul>
-  <li>
-    The <strong>Loan Offer must be set</strong> before running risk profiling,
-    since FOIR and LTV are required inputs.
-  </li>
-</ul>
+  <ul>
+    <li>
+      <strong>Nature of property:</strong> Selected by the BCM from a master list
+    </li>
+    <li>
+      <strong>FOIR:</strong> Auto-fetched by the system from the loan offer details
+    </li>
+    <li>
+      <strong>LTV:</strong> Auto-fetched by the system from the loan offer details
+    </li>
+    <li>
+      <strong>Vintage:</strong> Entered manually by the BCM (free-text field)
+    </li>
+    <li>
+      <strong>Occupation type:</strong> Selected as either “Salaried” or “Self-employed” by the BCM
+    </li>
+    <li>
+      <strong>Occupation:</strong> Selected by the BCM from a master list
+    </li>
+    <li>
+      <strong>Guarantor in deal:</strong> Selected as “Yes” or “No” by the BCM
+    </li>
+  </ul>
 
-<h3>System Behaviour</h3>
-<ul>
-  <li>
-    The system does <strong>not</strong> enforce any hard validation or blocking
-    based on the calculated risk score or risk category.
-  </li>
-  <li>
-    The outcome is used for <strong>assessment purposes only</strong>.
-  </li>
-</ul>
+  <p>
+    The loan offer must be set before running risk profiling, since <strong>FOIR</strong> and
+    <strong>LTV</strong> are required as inputs for the calculation.
+  </p>
 
-<h3>Edit Rules</h3>
-<ul>
-  <li>
-    The BCM can edit the risk profiling form and recalculate the risk score
-    until the application reaches the
-    <strong>“Loan sanctioned”</strong> stage.
-  </li>
-</ul>
+  <p>
+    The system does <strong>not</strong> impose any hard validation or blocking condition based on
+    the resulting risk score or risk category; the outcome is for assessment purposes only.
+  </p>
 
-<h3>Related Verification: Risk Gradation</h3>
-<ul>
-  <li>
-    <strong>Risk gradation</strong> is a separate verification activity.
-  </li>
-  <li>
-    It must be completed mandatorily in the
-    <strong>“Under review”</strong> stage.
-  </li>
-  <li>
-    The BCM fills the risk gradation form under
-    <strong>Primary verifications</strong> in the
-    <strong>Verifications</strong> tab.
-  </li>
-</ul>
+  <p>
+    The BCM can edit the risk profiling form and recalculate the risk score until the case moves to
+    the <strong>“Loan sanctioned”</strong> stage.
+  </p>
 
-<h3>Reference</h3>
-<ul>
-  <li>LAP Credit Risk Profiling (3) 1.xlsx</li>
-</ul>
+  <h2>Risk Gradation</h2>
+
+  <p>
+    Risk gradation is a separate verification, for which BCM fills a form mandatorily in the
+    <strong>“Under review”</strong> stage under <strong>Primary verifications</strong> on the
+    <strong>“Verifications”</strong> tab.
+  </p>
+
+  <h2>Reference Document</h2>
+
+  <p>
+    <a href="https://infinbox-my.sharepoint.com/:x:/g/personal/madhulika_das_finbox_in/IQBEuxEk0VnsS6u03Bk5E_syAS3Hy9hQcDY3TYye4NtOts0?wdOrigin=LOOP-WEB.PREVIEW.NT&wduihid=3a2703d9-13b8-45d1-91b0-e15eb13253b4&web=1&ct=1767929990532" target="_blank" rel="noopener noreferrer">
+      LAP Credit Risk Profiling (3) 1.xlsx
+    </a>
+  </p>
+
+</body>
+</html>
