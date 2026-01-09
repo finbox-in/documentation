@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Loan Offer Configuration – MFL LAP</title>
+Loan Offer Configuration – MFL LAP
 </head>
 <body>
 
