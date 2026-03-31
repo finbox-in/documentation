@@ -183,7 +183,7 @@ The response (success or failure) is handled using the `FinBoxAuthCallback` call
 
 ```kotlin
 FinBox.createUser("CLIENT_API_KEY", "CUSTOMER_ID",
-    object : FinBox.FinBoxAuthCallback {
+    object : FinBoxAuthCallback {
         override fun onSuccess(accessToken: String) {
             // Authentication is success
         }
@@ -199,7 +199,7 @@ FinBox.createUser("CLIENT_API_KEY", "CUSTOMER_ID",
 
 ```java
 FinBox.createUser("CLIENT_API_KEY", "CUSTOMER_ID",
-    new FinBox.FinBoxAuthCallback() {
+    new FinBoxAuthCallback() {
         @Override
         public void onSuccess(@NonNull String accessToken) {
             // Authentication is success
@@ -225,8 +225,7 @@ The startPeriodicSync method should be invoked only after receiving a successful
 <template v-slot:kotlin>
 
 ```kotlin
-val finbox = FinBox()
-finbox.startPeriodicSync()
+FinBox.startPeriodicSync()
 ```
 
 </template>
@@ -234,8 +233,7 @@ finbox.startPeriodicSync()
 <template v-slot:java>
 
 ```java
-FinBox finbox = new FinBox();
-finbox.startPeriodicSync();
+FinBox.startPeriodicSync();
 ```
 
 </template>
@@ -289,7 +287,7 @@ Once the in-device values are set, call `setDeviceMatch` before starting the syn
 <template v-slot:kotlin>
 
 ```kotlin
-finbox.setDeviceMatch(deviceMatch)
+FinBox.setDeviceMatch(deviceMatch)
 ```
 
 </template>
@@ -297,7 +295,7 @@ finbox.setDeviceMatch(deviceMatch)
 <template v-slot:java>
 
 ```java
-finbox.setDeviceMatch(deviceMatch);
+FinBox.setDeviceMatch(deviceMatch);
 ```
 
 </template>
@@ -397,14 +395,14 @@ By default, the sync frequency is set to **8 hours**. You can customize this fre
 <template v-slot:kotlin>
 
 ```kotlin
-finbox.setSyncFrequency(12 * 60 * 60)
+FinBox.setSyncFrequency(12 * 60 * 60)
 ```
 
 </template>
 <template v-slot:java>
 
 ```java
-finbox.setSyncFrequency();
+FinBox.setSyncFrequency();
 ```
 
 </template>
@@ -418,14 +416,14 @@ Make sure to cancel data synchronization tasks when the user logs out of the app
 <template v-slot:kotlin>
 
 ```kotlin
-finbox.stopPeriodicSync()
+FinBox.stopPeriodicSync()
 ```
 
 </template>
 <template v-slot:java>
 
 ```java
-finbox.stopPeriodicSync();
+FinBox.stopPeriodicSync();
 ```
 
 </template>
