@@ -301,9 +301,6 @@ FinBox.setDeviceMatch(deviceMatch);
 </template>
 </CodeSwitcher>
 
-::: tip TIP
-For Device Match to work at full potential, the SDK expects `android.permission.READ_CONTACTS`, `android.permission.GET_ACCOUNTS`, `android.permission.READ_SMS` to be accepted by the user.
-:::
 
 ## Forward Notifications to SDK (Important)
 
