@@ -156,25 +156,26 @@ We have hosted a sample project on GitHub, you can check it out here:
 
 ## Build Bank Connect
 
-Build the `FinBoxBankConnect` object by passing `apiKey`, `linkId`, `fromDate`, `toDate`, `bank`, `mode` and others.
+Build the `FinBoxBankConnect` object by passing `apiKey`, `linkId`, `environment`, `fromDate`, `toDate`, `bank`, `mode` and others.
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
 <template v-slot:kotlin>
 
 ```kotlin
-FinBoxBankConnect.Builder(applicationContext)
+val bankConnect = FinBoxBankConnect.Builder(applicationContext)
     .apiKey("CLIENT_API_KEY")
     .linkId("LINK_ID")
-    .fromDate("01/01/2021")                     // Optional: Default 6 months old date
-    .toDate("01/04/2021")                       // Optional: Default value 1 day less than current date
-    .bank("sbi")                                // Optional: Short code of the bank
-    .mode(PDF)                                  // Optional: PDF Mode
-    .mobileNumber("9876543210")                 // Optional: Mobile number
-    .journeyMode(MULTI_PDF)                     // Optional: Multi PDF journey
-    .aaJourneyMode(ONLY_RECURRING)              // Optional: Recurring AA pulls
-    .aaRecurringTenureMonthCount(3)             // Optional: Consent duration is valid for 3 months
-    .aaRecurringFrequencyUnit(TimeUnit.DAYS)    // Optional: Frequency value is in Days
-    .aaRecurringFrequencyValue(2)               // Optional: Number of times to pull the data
+    .environment(Environment.PRODUCTION)               // Required: PRODUCTION or UAT
+    .fromDate("01/01/2021")                             // Optional: Default 6 months old date
+    .toDate("01/04/2021")                               // Optional: Default value 1 day less than current date
+    .bank("sbi")                                        // Optional: Short code of the bank
+    .mode(Mode.PDF)                                     // Optional: PDF Mode
+    .mobileNumber("9876543210")                         // Optional: Mobile number
+    .journeyMode(JourneyMode.MULTI_PDF)                 // Optional: Multi PDF journey
+    .aaJourneyMode(AAJourneyMode.ONLY_RECURRING)        // Optional: Recurring AA pulls
+    .aaRecurringTenureMonthCount(3)                     // Optional: Consent duration is valid for 3 months
+    .aaRecurringFrequencyUnit(AARecurringFrequencyUnit.DAY) // Optional: Frequency unit is in Days
+    .aaRecurringFrequencyValue(2)                       // Optional: Number of times to pull the data
     .build()
 ```
 
@@ -182,19 +183,20 @@ FinBoxBankConnect.Builder(applicationContext)
 <template v-slot:java>
 
 ```java
-new FinBoxBankConnect.Builder(getApplicationContext())
+FinBoxBankConnect bankConnect = new FinBoxBankConnect.Builder(getApplicationContext())
     .apiKey("CLIENT_API_KEY")
     .linkId("LINK_ID")
-    .fromDate("01/01/2021")                     // Optional: Default 6 months old date
-    .toDate("01/04/2021")                       // Optional: Default value 1 day less than current date
-    .bank("sbi")                                // Optional: Short code of the bank
-    .mode(PDF)                                  // Optional: PDF Mode
-    .mobileNumber("9876543210")                 // Optional: Mobile number
-    .journeyMode(MULTI_PDF)                     // Optional: Multi PDF journey
-    .aaJourneyMode(ONLY_RECURRING)              // Optional: Recurring AA pulls
-    .aaRecurringTenureMonthCount(3)             // Optional: Consent duration is valid for 3 months
-    .aaRecurringFrequencyUnit(TimeUnit.DAYS)    // Optional: Frequency value is in Days
-    .aaRecurringFrequencyValue(2)               // Optional: Number of times to pull the data
+    .environment(Environment.PRODUCTION)               // Required: PRODUCTION or UAT
+    .fromDate("01/01/2021")                             // Optional: Default 6 months old date
+    .toDate("01/04/2021")                               // Optional: Default value 1 day less than current date
+    .bank("sbi")                                        // Optional: Short code of the bank
+    .mode(Mode.PDF)                                     // Optional: PDF Mode
+    .mobileNumber("9876543210")                         // Optional: Mobile number
+    .journeyMode(JourneyMode.MULTI_PDF)                 // Optional: Multi PDF journey
+    .aaJourneyMode(AAJourneyMode.ONLY_RECURRING)        // Optional: Recurring AA pulls
+    .aaRecurringTenureMonthCount(3)                     // Optional: Consent duration is valid for 3 months
+    .aaRecurringFrequencyUnit(AARecurringFrequencyUnit.DAY) // Optional: Frequency unit is in Days
+    .aaRecurringFrequencyValue(2)                       // Optional: Number of times to pull the data
     .build();
 ```
 
@@ -205,16 +207,17 @@ new FinBoxBankConnect.Builder(getApplicationContext())
 | - | - | - |
 | `apiKey` | specifies the `api_key` | Yes |
 | `linkId` | specifies the `link_id` | Yes |
+| `environment` | set as `Environment.PRODUCTION` or `Environment.UAT` | Yes |
 | `fromDate` | specifies the starting period of the statement in `DD/MM/YYYY`format | No |
 | `toDate` | specifies the end period of the statement in `DD/MM/YYYY` format | No |
 | `bank` | pass the [bank identifier](/bank-connect/appendix.html#bank-identifiers) to skip the bank selection screen and directly open a that bank's screen instead | No |
-| `mode` | set the mode as pdf (manual upload) or aa (Account Aggregator) or online (Net Banking) | No |
-| `mobile_number` | Prefills phone number in Account Aggregator mode | No |
-| `journey_mode` | Optional parameter to set the journey (i.e.multi_pdf or multi_banking) | No |
-| `aa_journey_mode` | set the journey mode for AA (i.e only_once or only_recurring) | No |
-| `aa_recurring_tenure_month_count` | set the recurring consent duration (min: 1 and max: 24) | No |
-| `aa_recurring_frequency_unit` | set the frequency unit to pull the data during the recurring consent duration (year, month, day, hour) | No |
-| `aa_recurring_frequency_value` | set the frequency value to pull the data during the recurring consent duration (min: 1 and max: 3) | No |
+| `mode` | set the mode as `Mode.PDF` (manual upload), `Mode.AA` (Account Aggregator), or `Mode.ONLINE` (Net Banking) | No |
+| `mobileNumber` | Prefills phone number in Account Aggregator mode, must be exactly 10 digits | No |
+| `journeyMode` | Optional parameter to set the journey (i.e. `JourneyMode.MULTI_PDF`, `MULTI_BANKING`, or `AA_MULTI_BANKING`) | No |
+| `aaJourneyMode` | set the journey mode for AA (i.e `AAJourneyMode.ONLY_ONCE`, `ONLY_RECURRING`, or `ONCE_WITH_RECURRING`) | No |
+| `aaRecurringTenureMonthCount` | set the recurring consent duration (min: 1 and max: 24) | No |
+| `aaRecurringFrequencyUnit` | set the frequency unit to pull the data during the recurring consent duration (`AARecurringFrequencyUnit.DAY`, `MONTH`, or `YEAR`) | No |
+| `aaRecurringFrequencyValue` | set the frequency value to pull the data during the recurring consent duration (min: 1 and max: 3) | No |
 
 `fromDate` and `toDate` specify the period for which the statements will be fetched. For example, if you need the last 6 months of statements, `fromDate` will be today's date - 6 months and `toDate` will be today's date - 1 day. If not provided the default date range is 6 months from the current date. It should be in `DD/MM/YYYY` format.
 
@@ -222,125 +225,202 @@ Once the above statement is added, a series of checks are done to make sure the 
 
 ::: warning Minimal Requirements for SDK to work:
 
-1. `apiKey` is is mandatory
-2. `linkId` is mandatory, and should be at least 8 characters long
-3. In case `fromDate` / `toDate` is provided, make sure they are of correct date format: `DD/MM/YYYY`.
-4. Make sure `fromDate` is always less than `toDate`
-5. Make sure `toDate` is never today's date, the maximum possible value for it is today's date - 1 day
+1. `apiKey` is mandatory
+2. `linkId` is mandatory, and cannot be blank
+3. `environment` is mandatory
+4. In case `fromDate` / `toDate` is provided, make sure they are of correct date format: `DD/MM/YYYY`.
+5. Make sure `fromDate` is always less than `toDate`
+6. Make sure `toDate` is never today's date, the maximum possible value for it is today's date - 1 day
+7. If provided, `mobileNumber` must be exactly 10 digits
 Once all these conditions are met, the BankConnect object will build.
 :::
 
-## Show SDK Screen
+## Build Bank Connect V2
 
-Start BankActivity and listen for the result
+`FinBoxBankConnectV2.Builder` builds a `FinBoxBankConnectV2` object. It accepts everything `FinBoxBankConnect` does, plus redirect URLs, AA journey codes, and richer session metadata.
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
 <template v-slot:kotlin>
 
 ```kotlin
-/**
- * Activity Result
- */
-private val result = registerForActivityResult(
-    ActivityResultContracts.StartActivityForResult()
-) {
-    // Parse the result
-    parseActivityResult(it)
-}
-
-// Start Bank Activity
-result.launch(Intent(this, BankActivity::class.java))
+val bankConnectV2 = FinBoxBankConnectV2.Builder(applicationContext)
+    .apiKey("CLIENT_API_KEY")
+    .linkId("LINK_ID")
+    .environment(Environment.PRODUCTION)                    // Required: PRODUCTION or UAT
+    .redirectUrl("https://yourapp.com/redirect")            // Optional: Redirect URL on success
+    .errorRedirectUrl("https://yourapp.com/error")          // Optional: Redirect URL on error
+    .fromDate("01/01/2021")                                 // Optional: Default 6 months old date
+    .toDate("01/04/2021")                                   // Optional: Default value 1 day less than current date
+    .logoUrl("https://yourapp.com/logo.png")                // Optional: Logo shown on the SDK screen
+    .bank("sbi")                                            // Optional: Short code of the bank
+    .mode(Mode.AA)                                          // Optional
+    .mobileNumber("9876543210")                             // Optional: Must be exactly 10 digits
+    .sessionExpiry(30)                                      // Optional: Session validity in minutes
+    .journeyMode(JourneyMode.MULTI_BANKING)                 // Optional
+    .acceptAnything(true)                                   // Optional
+    .isMobileFieldEditable(true)                            // Optional
+    .aaJourneyCode("BCAA004")                               // Optional
+    .isBackButtonDisabled(true)                             // Optional
+    .aaErrorRedirectRequired(true)                          // Optional
+    .aaErroredBanks(listOf("HDFC", "ICICI"))                // Optional
+    .aaFirstFlow(true)                                      // Optional
+    .aaVendor("VENDOR_NAME")                                // Optional
+    .accountNumber("0048")                                  // Optional
+    .programId("PROGRAM_ID")                                // Optional
+    .pan("ABCDE1234F")                                      // Optional
+    .names(listOf("John Doe"))                              // Optional
+    .employerNames(listOf("FinBox"))                        // Optional
+    .companiesForSelfTransfer(listOf("FinBox Pvt Ltd"))     // Optional
+    .consents(mapOf("consent_key" to "consent_value"))      // Optional
+    .metadata(SessionMetadata(names = listOf("John Doe")))  // Optional
+    .build()
 ```
 
 </template>
 <template v-slot:java>
 
 ```java
-/**
- * Activity Result
- */
-@NonNull
-private final ActivityResultLauncher<Intent> result =
-        registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                this::parseActivityResult);
-
-// Start Bank Activity
-result.launch(new Intent(this, BankActivity.class));
+FinBoxBankConnectV2 bankConnectV2 = new FinBoxBankConnectV2.Builder(getApplicationContext())
+    .apiKey("CLIENT_API_KEY")
+    .linkId("LINK_ID")
+    .environment(Environment.PRODUCTION)                    // Required: PRODUCTION or UAT
+    .redirectUrl("https://yourapp.com/redirect")            // Optional: Redirect URL on success
+    .errorRedirectUrl("https://yourapp.com/error")          // Optional: Redirect URL on error
+    .fromDate("01/01/2021")                                 // Optional: Default 6 months old date
+    .toDate("01/04/2021")                                   // Optional: Default value 1 day less than current date
+    .logoUrl("https://yourapp.com/logo.png")                // Optional: Logo shown on the SDK screen
+    .bank("sbi")                                            // Optional: Short code of the bank
+    .mode(Mode.AA)                                          // Optional
+    .mobileNumber("9876543210")                             // Optional: Must be exactly 10 digits
+    .sessionExpiry(30)                                      // Optional: Session validity in minutes
+    .journeyMode(JourneyMode.MULTI_BANKING)                 // Optional
+    .acceptAnything(true)                                   // Optional
+    .isMobileFieldEditable(true)                            // Optional
+    .aaJourneyCode("BCAA004")                               // Optional
+    .isBackButtonDisabled(true)                             // Optional
+    .aaErrorRedirectRequired(true)                          // Optional
+    .aaErroredBanks(Arrays.asList("HDFC", "ICICI"))         // Optional
+    .aaFirstFlow(true)                                      // Optional
+    .aaVendor("VENDOR_NAME")                                // Optional
+    .accountNumber("0048")                                  // Optional
+    .programId("PROGRAM_ID")                                // Optional
+    .pan("ABCDE1234F")                                      // Optional
+    .names(Arrays.asList("John Doe"))                       // Optional
+    .employerNames(Arrays.asList("FinBox"))                 // Optional
+    .companiesForSelfTransfer(Arrays.asList("FinBox Pvt Ltd")) // Optional
+    .consents(Collections.singletonMap("consent_key", "consent_value")) // Optional
+    .metadata(new SessionMetadata(Arrays.asList("John Doe"), null, null)) // Optional
+    .build();
 ```
 
 </template>
 </CodeSwitcher>
 
+Builder properties in addition to `apiKey`, `linkId`, `environment`, `fromDate`, `toDate`, `bank`, `mode`, `journeyMode`, `mobileNumber` documented above:
+
+| Builder Property | Description | Required |
+| - | - | - |
+| `redirectUrl` | URL to redirect to on success | No |
+| `errorRedirectUrl` | URL to redirect to on error | No |
+| `logoUrl` | logo shown on the SDK screen | No |
+| `sessionExpiry` | session validity in minutes | No |
+| `acceptAnything` | relax document acceptance checks | No |
+| `isMobileFieldEditable` | allow editing the mobile number on the SDK screen | No |
+| `aaJourneyCode` | Account Aggregator journey code | No |
+| `isBackButtonDisabled` | disable the back button on the SDK screen | No |
+| `aaErrorRedirectRequired` | redirect to `errorRedirectUrl` on AA errors | No |
+| `aaErroredBanks` | banks to exclude due to prior AA errors | No |
+| `aaFirstFlow` | whether this is the user's first AA flow | No |
+| `aaVendor` | Account Aggregator vendor name | No |
+| `accountNumber` | user's account number | No |
+| `programId` | program id | No |
+| `pan` | user's PAN | No |
+| `names` | known names for the user | No |
+| `employerNames` | known employer names for the user | No |
+| `companiesForSelfTransfer` | companies to treat as self-transfers | No |
+| `consents` | arbitrary consent key/value pairs | No |
+| `metadata` | bundles `names`, `employerNames`, `companiesForSelfTransfer` into a `SessionMetadata` object | No |
+
+::: warning NOTE
+The same minimal requirements listed above apply here too: `apiKey`, `linkId`, and `environment` are mandatory, and `fromDate` / `toDate` / `mobileNumber` follow the same validation rules.
+:::
+
+## Show SDK Screen
+
+Register a launcher for the result, then launch the intent obtained from the `FinBoxBankConnect` (or `FinBoxBankConnectV2`) object built above. This mirrors `CreateSessionFragment` in the [sample project](https://github.com/finbox-in/bankconnect-android).
+
+<CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
+<template v-slot:kotlin>
+
+```kotlin
+import `in`.finbox.bankconnect.hybrid.constants.FINBOX_JOURNEY_RESULT
+import `in`.finbox.bankconnect.hybrid.payload.FinBoxPayload
+
+private val bankConnectLauncher = registerForActivityResult(
+    ActivityResultContracts.StartActivityForResult()
+) { result ->
+    if (result.resultCode == Activity.RESULT_OK) {
+        val payload = result.data?.extras?.getParcelable<FinBoxPayload>(FINBOX_JOURNEY_RESULT)
+        payload?.let {
+            it.entityId?.let { entityId -> showToast("EntityId: $entityId") }
+                ?: it.sessionId?.let { sessionId -> showToast("SessionId: $sessionId") }
+                ?: it.message?.let { message -> showToast(message) }
+        } ?: showToast("Something went wrong")
+    }
+}
+
+// Launch the SDK. Use bankConnectV2.getBankConnectIntentV2(this) if you built a FinBoxBankConnectV2
+bankConnectLauncher.launch(bankConnect.getBankConnectIntentV1(this))
+```
+
+</template>
+<template v-slot:java>
+
+```java
+import in.finbox.bankconnect.hybrid.constants.ConstantKt;
+import in.finbox.bankconnect.hybrid.payload.FinBoxPayload;
+
+@NonNull
+private final ActivityResultLauncher<Intent> bankConnectLauncher =
+        registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == Activity.RESULT_OK) {
+                @Nullable final Bundle extras = result.getData() != null ? result.getData().getExtras() : null;
+                @Nullable final FinBoxPayload payload = extras != null ? extras.getParcelable(ConstantKt.FINBOX_JOURNEY_RESULT) : null;
+                if (payload == null) {
+                    // Something went wrong
+                } else if (payload.getEntityId() != null && payload.getEntityId().length() > 0) {
+                    showToast("EntityId: " + payload.getEntityId());
+                } else if (payload.getSessionId() != null && payload.getSessionId().length() > 0) {
+                    showToast("SessionId: " + payload.getSessionId());
+                } else if (payload.getMessage() != null) {
+                    showToast(payload.getMessage());
+                }
+            }
+        });
+
+// Launch the SDK. Use bankConnectV2.getBankConnectIntentV2(this) if you built a FinBoxBankConnectV2
+bankConnectLauncher.launch(bankConnect.getBankConnectIntentV1(this));
+```
+
+</template>
+</CodeSwitcher>
+
+::: warning NOTE
+`FINBOX_JOURNEY_RESULT` is a constant exported by the SDK, not a literal you write yourself, its value is `"finbox_result"`.
+- Kotlin: import it directly, `in.finbox.bankconnect.hybrid.constants.FINBOX_JOURNEY_RESULT`.
+- Java: Kotlin top-level constants compile to a static field on a `<FileName>Kt` holder class, so import `in.finbox.bankconnect.hybrid.constants.ConstantKt` and reference `ConstantKt.FINBOX_JOURNEY_RESULT`.
+:::
+
 ## Parse Results
 
-Once the user navigates through the banks and uploads the bank statement, the sdk automatically closes `BankActivity` and returns `FinBoxPayload`.
+Once the user navigates through the banks and uploads the bank statement, the sdk automatically closes the SDK screen and returns a `FinBoxPayload`, read above in the launcher's callback.
 
 `FinBoxPayload` contains `linkId` and `entityId` (or `sessionId`). A successful upload contains a unique `entityId` (or `sessionId`).
 
 - linkId - Unique id passed when building the Bank Connect object
 - entityId - Unique id of a successful statement upload during Entity flow
 - sessionId - Session id of a successful statement upload during Session flow
-
-<CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
-<template v-slot:kotlin>
-
-```kotlin
-if (result?.resultCode == Activity.RESULT_OK) {
-    // Result is success
-    // Read extras
-    val extras = result.data?.extras
-    // Read success payload
-    val payload = extras?.getParcelable<FinBoxPayload>(FINBOX_JOURNEY_RESULT)
-    when {
-        payload == null -> {
-            // Failed to Receive Payload
-        }
-        payload.entityId.isNullOrBlank() && payload.sessionId.isNullOrBlank() -> {
-            // Failed to Upload Document during Entity flow or
-            // Failed to Upload Document for Session Flow
-        }
-        else -> {
-            // Upload Success
-            // Read the session id for session flow or
-            // Read the entity id
-        }
-    }
-} else {
-    // Result Failed or User Cancelled
-}
-```
-
-</template>
-<template v-slot:java>
-
-```java
-if (result != null && result.getResultCode() == Activity.RESULT_OK) {
-    // Result is success
-    // Read extras
-    @Nullable final Bundle extras = result.getData() != null ? result.getData().getExtras() : null;
-    if (extras != null) {
-        // Read success payload
-        @Nullable final FinBoxPayload payload = extras.getParcelable(FINBOX_JOURNEY_RESULT);
-        if (payload == null) {
-            // Failed to Receive Payload
-        } else if ((payload.getEntityId() == null || payload.getEntityId().length() == 0) && (payload.getSessionId() == null || payload.getSessionId().length() == 0)) {
-            // Failed to Upload Document during Entity flow or
-            // Failed to Upload Document for Session Flow
-        } else {
-            // Upload Success
-            // Read the session id for session flow or
-            // Read the entity id
-        }
-    } else {
-        // Failed to Receive data
-    }
-} else {
-    // Result Failed or User Cancelled
-}
-```
-
-</template>
-</CodeSwitcher>
+- message - Optional human-readable message accompanying the result
 
 :::warning Webhook
 To track detailed errors, and transaction process completion at the server-side, it is recommended to also integrate [Webhook](/bank-connect/webhook.html).
@@ -348,24 +428,28 @@ To track detailed errors, and transaction process completion at the server-side,
 
 ## Customization
 
-`BankActivity` inherits the themes and color from Material Dark Action Bar Theme. Most of the case, there would be less customization requried but if there is a mismatch in colors, you can customize it through your `styles.xml` file.
+The SDK screen inherits its theme and colors from `Theme.BankConnectHybrid`, which extends `Theme.MaterialComponents.DayNight.NoActionBar` and ships both a light and a dark variant. In most cases no customization is required, but if there is a mismatch in colors, you can override it through your own `styles.xml` file, Android resource merging lets a style of the same name in your app take precedence over the SDK's default.
 
-1. The sdk Toolbar color uses `colorPrimary`. If your app toolbar color is different from `colorPrimary` then change the color by updating the background color
+1. The SDK toolbar's background comes from `colorPrimary` (the status bar color follows `colorPrimaryVariant`). If your app's colors are different, override them by redeclaring `Theme.BankConnectHybrid`:
 
  ```xml
-    <style name="BankConnectTheme.Toolbar">
-        <item name="android:background">@color/colorWhite</item>
+    <style name="Theme.BankConnectHybrid" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/your_brand_color</item>
+        <item name="colorPrimaryVariant">@color/your_brand_color_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
     </style>
  ```
 
-2. `BankConnectTheme` is the base theme of the sdk and it inherits `Theme.MaterialComponents.Light.DarkActionBar`. If your app doesn't inherit Dark Action Bar theme then you can change the sdk theme to inherit your app base theme.
+2. `Theme.BankConnectHybrid` is the base theme of the SDK screen. If you'd rather it inherit your own app's base theme instead of the SDK's defaults, redeclare it with your theme as the parent, along with its app bar overlay:
 
  ```xml
-    <style name="BankConnectTheme" parent="AppTheme">
+    <style name="Theme.BankConnectHybrid" parent="AppTheme">
 
     </style>
 
-    <style name="BankConnectTheme.AppBarOverlay" parent="AppTheme.AppBarOverlay" />
-
-    <style name="BankConnectTheme.PopupOverLay" parent="AppTheme.PopupOverlay" />
+    <style name="Theme.BankConnectHybrid.AppBar" parent="AppTheme.AppBarOverlay" />
  ```
+
+::: warning NOTE
+Overrides only take effect if the style name matches exactly, `Theme.BankConnectHybrid` and `Theme.BankConnectHybrid.AppBar`. If you override the light theme, add the same override under `values-night/styles.xml` for the dark variant.
+:::
