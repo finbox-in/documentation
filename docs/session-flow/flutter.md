@@ -1,6 +1,6 @@
 # BankConnect: Flutter
 
-BankConnect Cordova SDK helps user submits their bank statements via upload or net banking credentials in your Android application.
+BankConnect Flutter SDK helps user submits their bank statements via upload or net banking credentials in your Android application.
 
 ## Requirements
 
@@ -75,7 +75,7 @@ dependencies {
 
 Specify the following in `local.properties` file:
 
-```
+```properties
 ACCESS_KEY=<ACCESS_KEY>
 SECRET_KEY=<SECRET_KEY>
 BC_SDK_VERSION=<BC_SDK_VERSION>
@@ -109,21 +109,20 @@ We have hosted a sample project on GitHub, you can check it out here:
 
 ## Show SDK Screen
 
-Initialize the `FinBoxBcPlugin` in Kotlin Application class
-
-```kotlin
-class MainApp:FlutterApplication() {
-    override fun onCreate() {
-        super.onCreate()
-        FinBoxBcPlugin.initLibrary(this)
-    }
-}
-```
-
-Initialize the `FinBoxBcPlugin` in dart file
-
 ```dart
-FinBoxBcPlugin.initSdk("CLIENT_API_KEY","FROM_DATE","TO_DATE","BANK_NAME");
+FinBoxBcPlugin.initSdk(
+    "CLIENT_API_KEY",
+    "FROM_DATE",                        // Optional: Default 6 months old date
+    "TO_DATE",                          // Optional: Default value 1 day less than current date
+    "BANK_NAME",                        // Optional: Short code of the bank
+    "MODE",                             // Optional: PDF Mode
+    "MOBILE_NUMBER",                    // Optional: Mobile number
+    "JOURNEY_MODE",                     // Optional: Multi PDF journey
+    "AA_JOURNEY_MODE",                  // Optional: Recurring AA pulls
+    "AA_RECURRING_TENURE_MONTH_COUNT",  // Optional: Consent duration is valid for 3 months
+    "AA_RECURRING_FREQUENCY_UNIT",      // Optional: Frequency value is in Days
+    "AA_RECURRING_FREQUENCY_VALUE"      // Optional: Number of times to pull the data
+);
 ```
 
 | Builder Property | Description | Required |
@@ -133,6 +132,13 @@ FinBoxBcPlugin.initSdk("CLIENT_API_KEY","FROM_DATE","TO_DATE","BANK_NAME");
 | `fromDate` | specifies the starting period of the statement in `DD/MM/YYYY`format | No |
 | `toDate` | specifies the end period of the statement in `DD/MM/YYYY` format | No |
 | `bank` | pass the [bank identifier](/bank-connect/appendix.html#bank-identifiers) to skip the bank selection screen and directly open a that bank's screen instead | No |
+| `mode` | set the mode as pdf (manual upload) or aa (Account Aggregator) or online (Net Banking) | No |
+| `mobile_number` | Prefills phone number in Account Aggregator mode | No |
+| `journey_mode` | Optional parameter to set the journey (i.e.multi_pdf or multi_banking) | No |
+| `aa_journey_mode` | set the journey mode for AA (i.e only_once or only_recurring) | No |
+| `aa_recurring_tenure_month_count` | set the recurring consent duration (min: 1 and max: 24) | No |
+| `aa_recurring_frequency_unit` | set the frequency unit to pull the data during the recurring consent duration (year, month, day, hour) | No |
+| `aa_recurring_frequency_value` | set the frequency value to pull the data during the recurring consent duration (min: 1 and max: 3) | No |
 
 `fromDate` and `toDate` specify the period for which the statements will be fetched. For example, if you need the last 6 months of statements, `fromDate` will be today's date - 6 months and `toDate` will be today's date - 1 day. If not provided the default date range is 6 months from the current date. It should be in `DD/MM/YYYY` format.
 
@@ -152,10 +158,17 @@ Once all these conditions are met, the BankConnect object will build.
 
 Once the user navigates through the banks and uploads the bank statement, the sdk automatically closes `FinBoxBcPlugin` and returns the result inside `_getJourneyResult`.
 
-`call.arguments` contains `linkId` and `entityId`. A successful upload contains a unique `entityId`.
+Set method handler inside `build` method of your home page to receive the results
+
+```dart
+FinBoxBcPlugin.platform.setMethodCallHandler(_getJourneyResult);
+```
+
+`call.arguments` contains `linkId` and `entityId` (or `sessionId`). A successful upload contains a unique `entityId` (or `sessionId`).
 
 - linkId - Unique id passed when building the Bank Connect object
-- entityId - Unique id of a successful statement upload
+- entityId - Unique id of a successful statement upload during Entity flow
+- sessionId - Session id of a successful statement upload during Session flow
 
 ```dart
 static Future<void> _getJourneyResult(MethodCall call) async {
@@ -168,5 +181,11 @@ static Future<void> _getJourneyResult(MethodCall call) async {
 Following json will be received
 
 ```json
-{"entityId":"entity_id","linkId":"link_id","error_type":"error_code","message":"msg"}
+{
+    "linkId": "link_id",
+    "entityId": "entity_id", // Entity id will be available only for entity flow
+    "sessionId": "session_id", // Session Id will be available only for session flow
+    "error_type": "error_code",
+    "message": "msg"
+}
 ```

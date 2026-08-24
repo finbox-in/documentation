@@ -188,7 +188,7 @@ To begin data collection and syncing, the DeviceConnect SDK requires associating
 
 ```kotlin
 FinBox.createUser("CLIENT_API_KEY", "CUSTOMER_ID",
-    object : FinBox.FinBoxAuthCallback {
+    object : FinBoxAuthCallback {
         override fun onSuccess(accessToken: String) {
             // Authentication is success
         }
@@ -204,7 +204,7 @@ FinBox.createUser("CLIENT_API_KEY", "CUSTOMER_ID",
 
 ```java
 FinBox.createUser("CLIENT_API_KEY", "CUSTOMER_ID",
-    new FinBox.FinBoxAuthCallback() {
+    new FinBoxAuthCallback() {
         @Override
         public void onSuccess(@NonNull String accessToken) {
             // Authentication is success
@@ -248,8 +248,7 @@ The startPeriodicSync() method begins regular background syncing of user data, b
 <template v-slot:kotlin>
 
 ```kotlin
-val finbox = FinBox()
-finbox.startPeriodicSync()
+FinBox.startPeriodicSync()
 ```
 
 </template>
@@ -257,8 +256,7 @@ finbox.startPeriodicSync()
 <template v-slot:java>
 
 ```java
-FinBox finbox = new FinBox();
-finbox.startPeriodicSync();
+FinBox.startPeriodicSync();
 ```
 
 </template>
@@ -354,7 +352,7 @@ Once the in-device values are set, call `setDeviceMatch` before starting the syn
 <template v-slot:kotlin>
 
 ```kotlin
-finbox.setDeviceMatch(deviceMatch)
+FinBox.setDeviceMatch(deviceMatch)
 ```
 
 </template>
@@ -362,7 +360,7 @@ finbox.setDeviceMatch(deviceMatch)
 <template v-slot:java>
 
 ```java
-finbox.setDeviceMatch(deviceMatch);
+FinBox.setDeviceMatch(deviceMatch);
 ```
 
 </template>
@@ -469,14 +467,14 @@ Call the `stopPeriodicSync` method during logout to:
 <template v-slot:kotlin>
 
 ```kotlin
-finbox.stopPeriodicSync()
+FinBox.stopPeriodicSync()
 ```
 
 </template>
 <template v-slot:java>
 
 ```java
-finbox.stopPeriodicSync();
+FinBox.stopPeriodicSync();
 ```
 
 </template>

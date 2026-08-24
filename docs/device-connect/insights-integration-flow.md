@@ -8,7 +8,7 @@ The **Insights API** allows clients to:
 
 An overview of the API calling is shown below
 
-<img src="/device_connect_back_end_integration.jpg" alt="Device Connect Backed Integration Workflow" />
+<img src="/device_connect_back_end_integration.svg" alt="Device Connect Backed Integration Workflow" />
 
 ### **Integration Workflow**
 
