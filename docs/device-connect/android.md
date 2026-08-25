@@ -180,6 +180,7 @@ To begin data collection and syncing, the DeviceConnect SDK requires associating
 
 |:Parameter |:Type |:Description |
 |----------|----------|----------|
+| context | Context | Application or Activity context |
 | CLIENT_API_KEY | String| The unique FinBox API key assigned to your application |
 | CUSTOMER_ID | String | Unique identifier assigned to the user by your system (see format rules) |
 
@@ -187,7 +188,7 @@ To begin data collection and syncing, the DeviceConnect SDK requires associating
 <template v-slot:kotlin>
 
 ```kotlin
-FinBox.createUser("CLIENT_API_KEY", "CUSTOMER_ID",
+FinBox.createUser(context, "CLIENT_API_KEY", "CUSTOMER_ID",
     object : FinBoxAuthCallback {
         override fun onSuccess(accessToken: String) {
             // Authentication is success
@@ -203,7 +204,7 @@ FinBox.createUser("CLIENT_API_KEY", "CUSTOMER_ID",
 <template v-slot:java>
 
 ```java
-FinBox.createUser("CLIENT_API_KEY", "CUSTOMER_ID",
+FinBox.createUser(context, "CLIENT_API_KEY", "CUSTOMER_ID",
     new FinBoxAuthCallback() {
         @Override
         public void onSuccess(@NonNull String accessToken) {
@@ -222,7 +223,7 @@ FinBox.createUser("CLIENT_API_KEY", "CUSTOMER_ID",
 
 :warning: **Customer ID Rules**:
 - Must be alphanumeric only (no special characters)
-- Cannot exceed 64 characters
+- Must be between 3 and 256 characters
 - Must not be null or an empty string ("")
 
 The response (success or failure) is handled using the `FinBoxAuthCallback` callback.
@@ -248,7 +249,7 @@ The startPeriodicSync() method begins regular background syncing of user data, b
 <template v-slot:kotlin>
 
 ```kotlin
-FinBox.startPeriodicSync()
+FinBox.startPeriodicSync(context)
 ```
 
 </template>
@@ -256,7 +257,7 @@ FinBox.startPeriodicSync()
 <template v-slot:java>
 
 ```java
-FinBox.startPeriodicSync();
+FinBox.startPeriodicSync(context);
 ```
 
 </template>
@@ -269,24 +270,118 @@ FinBox.startPeriodicSync();
   - Automatically pauses syncing when the battery is low.
   - Resumes syncing when the device is charging or reconnected to a network
 
-By default, the sync frequency is set to **8 hours**. You can customize this frequency by calling the `setSyncFrequency` method and passing your preferred interval **in seconds** as an argument. Ensure this method is invoked after the user is created.
+By default, the sync frequency is set to **8 hours**. You can customize this frequency by calling the `setSyncFrequency` method and passing your preferred interval along with a `TimeUnit` as arguments. Ensure this method is invoked after the user is created.
 
 <CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
 <template v-slot:kotlin>
 
 ```kotlin
-finbox.setSyncFrequency(12 * 60 * 60)
+FinBox.setSyncFrequency(12, TimeUnit.HOURS)
 ```
 
 </template>
 <template v-slot:java>
 
 ```java
-finbox.setSyncFrequency();
+FinBox.setSyncFrequency(12, TimeUnit.HOURS);
 ```
 
 </template>
 </CodeSwitcher>
+
+### Triggering an Immediate One-Time Sync: `syncOnce()`
+
+Use `syncOnce` to trigger an immediate, one-off sync of all enabled data sources, outside of the regular periodic schedule. This is useful when you need fresh data right away (e.g., right after onboarding) instead of waiting for the next periodic cycle. Like `startPeriodicSync`, it should only be called after a successful `createUser` call.
+
+<CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
+<template v-slot:kotlin>
+
+```kotlin
+FinBox.syncOnce(context)
+```
+
+</template>
+<template v-slot:java>
+
+```java
+FinBox.syncOnce(context);
+```
+
+</template>
+</CodeSwitcher>
+
+### Limiting SMS Sync History: `setMaxSmsSyncDays()`
+
+By default, the SDK syncs all available SMS history from the device. Use `setMaxSmsSyncDays` to cap SMS syncing to only the last N days, which can help reduce sync payload size on devices with long SMS histories.
+
+::: warning NOTE
+Call `setMaxSmsSyncDays` before `syncOnce` or `startPeriodicSync`. The limit only applies to syncs triggered after it is set.
+:::
+
+|:Parameter |:Type |:Description |
+|----------|----------|----------|
+| context | Context | Application or Activity context |
+| days | Int? | Number of days of SMS history to sync. Pass `null` to remove the limit and sync all available history |
+
+<CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
+<template v-slot:kotlin>
+
+```kotlin
+// Only sync SMS from the last 30 days
+FinBox.setMaxSmsSyncDays(context, 30)
+
+// Remove the limit and sync all available SMS history
+FinBox.setMaxSmsSyncDays(context, null)
+```
+
+</template>
+<template v-slot:java>
+
+```java
+// Only sync SMS from the last 30 days
+FinBox.setMaxSmsSyncDays(context, 30);
+
+// Remove the limit and sync all available SMS history
+FinBox.setMaxSmsSyncDays(context, null);
+```
+
+</template>
+</CodeSwitcher>
+
+
+
+### Restricting Sync to a Preferred Time Window: `setSyncWindow()`
+
+Use `setSyncWindow` to nudge periodic syncs towards a preferred time of day (e.g., avoid syncing in the middle of the night). It adds an extra, randomized initial delay to the periodic sync schedule so that the first sync of the window lands between `startTime` and `startTime + buffer`.
+
+|:Parameter |:Type |:Description |
+|----------|----------|----------|
+| startTime | LocalTime | The time of day the sync window should start |
+| buffer | Long | Additional delay window, in units of `bufferUnit`, after `startTime` |
+| bufferUnit | TimeUnit | The `TimeUnit` for the `buffer` value |
+
+<CodeSwitcher :languages="{kotlin:'Kotlin',java:'Java'}">
+<template v-slot:kotlin>
+
+```kotlin
+// Prefer syncing sometime between 9:00 AM and 11:00 AM
+FinBox.setSyncWindow(LocalTime.of(9, 0), 2, TimeUnit.HOURS)
+```
+
+</template>
+<template v-slot:java>
+
+```java
+// Prefer syncing sometime between 9:00 AM and 11:00 AM
+FinBox.setSyncWindow(LocalTime.of(9, 0), 2, TimeUnit.HOURS);
+```
+
+</template>
+</CodeSwitcher>
+
+::: tip NOTE
+This only affects sync timing if the current time is still before `startTime` on the day the call is made; if `startTime` has already passed, the extra delay is not applied for that cycle. It also only adds an extra delay on top of the regular `setSyncFrequency` interval — it does not change how often syncs occur.
+:::
 
 :lock: **Permissions-Driven Behavior**:
 - Data syncing respects all runtime permissions granted by the user. If any required permission (e.g., SMS, Installed etc) is not granted or is later revoked:
@@ -352,7 +447,7 @@ Once the in-device values are set, call `setDeviceMatch` before starting the syn
 <template v-slot:kotlin>
 
 ```kotlin
-FinBox.setDeviceMatch(deviceMatch)
+FinBox.setDeviceMatch(context, deviceMatch)
 ```
 
 </template>
@@ -360,7 +455,7 @@ FinBox.setDeviceMatch(deviceMatch)
 <template v-slot:java>
 
 ```java
-FinBox.setDeviceMatch(deviceMatch);
+FinBox.setDeviceMatch(context, deviceMatch);
 ```
 
 </template>
@@ -467,14 +562,14 @@ Call the `stopPeriodicSync` method during logout to:
 <template v-slot:kotlin>
 
 ```kotlin
-FinBox.stopPeriodicSync()
+FinBox.stopPeriodicSync(context)
 ```
 
 </template>
 <template v-slot:java>
 
 ```java
-FinBox.stopPeriodicSync();
+FinBox.stopPeriodicSync(context);
 ```
 
 </template>
@@ -488,14 +583,14 @@ Use the `resetData` method to clear all locally cached data associated with the 
 <template v-slot:kotlin>
 
 ```kotlin
-FinBox.resetData()
+FinBox.resetData(context)
 ```
 
 </template>
 <template v-slot:java>
 
 ```java
-FinBox.resetData();
+FinBox.resetData(context);
 ```
 
 </template>
@@ -515,14 +610,14 @@ Use the `forgetUser` method to permanently delete all user data from FinBox syst
 <template v-slot:kotlin>
 
 ```kotlin
-FinBox.forgetUser()
+FinBox.forgetUser(context)
 ```
 
 </template>
 <template v-slot:java>
 
 ```java
-FinBox.forgetUser();
+FinBox.forgetUser(context);
 ```
 
 </template>
