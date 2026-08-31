@@ -19,5 +19,6 @@ All the constants stated below are available as constants in SDK.
 | ACCESS_TOKEN_NULL | 7683              | Access token is null               |
 | REFRESH_TOKEN_NULL | 7684              | Refresh token is null               |
 | AUTHENTICATE_NOT_FOUND | 7685              | End point is not found               |
+| USER_DEVICE_NULL | 7686              | User device id is null               |
 
 Some error codes can be resolved by validating the implementation and some by retrying the creation of the user, while other error codes can only be resolved by contacting FinBox.

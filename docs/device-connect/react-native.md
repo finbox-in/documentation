@@ -144,6 +144,7 @@ npm install --save react-native-risk-sdk
 ::: warning NOTE
 Following will be shared by FinBox team at the time of integration:
 
+- `REACT_NATIVE_RISK_SDK_VERSION`
 - `ACCESS_KEY`
 - `SECRET_KEY`
 - `DC_SDK_VERSION`
@@ -163,7 +164,7 @@ To create a user, call the `createUser` method with the following arguments:
 
 ::: danger IMPORTANT
 - `CUSTOMER_ID` Must be **alphanumeric** (no special characters).
-- Should not exceed **64** characters.
+- Must be between **3** and **256** characters.
 - Must not be `null` or an empty string `""`.
 :::
 
@@ -193,7 +194,7 @@ You can read about the errors in the [Error Codes](/device-connect/error-codes.h
 
 ## Start Periodic Sync
 
-The startPeriodicSync method should be invoked only after receiving a successful response from the `createUser` method callback. This method initiates background syncing for all data sources based on the permissions granted by the user. Data is synced at regular intervals in the background, ensuring continuous and seamless data collection.
+The startPeriodicSync method should be invoked only after receiving a successful response from the `createUser` method callback. This method initiates background syncing for all data sources based on the permissions granted by the user. Data is synced at regular intervals in the background, ensuring continuous and seamless data collection. The argument passed is the sync interval **in hours**.
 
 ```javascript
 FinBoxRiskSdk.startPeriodicSync(12) //Start the sync periodically after every 12 hour
@@ -208,17 +209,33 @@ When a user logs back into the app with fresh credentials:
 Even though the SDK automatically adapts to a new user, this approach minimizes potential delays in syncing during the first session
 :::
 
-## Match Details on Device
+## Sync Once (Android only)
+
+Use `syncOnce` to trigger an immediate, one-off sync of all enabled data sources, outside of the regular periodic schedule. This is useful when you need fresh data right away instead of waiting for the next periodic cycle. It should only be called after a successful `createUser` call.
+
+```javascript
+FinBoxRiskSdk.syncOnce();
+```
+
+## Initialize Library (Android only, Optional)
+
+`initLibrary` is an optional manual retry hook for the SDK's own auto-initialization. The SDK initializes itself automatically via a content provider on app start, so this call is not required in most integrations — use it only if you need to explicitly retry initialization.
+
+```javascript
+FinBoxRiskSdk.initLibrary();
+```
+
+## Match Details on Device (Android only)
 
 Device matching enables additional pattern recognition to match email, phone numbers and name. The matching happens on the device and the user phone numbers, email addresses won't leave the device.
 
-Call `setDeviceMatch` method before starting the syncs.
+Call `setDeviceMatch` method before starting the syncs. Any of the three arguments can be passed as `null` if not available.
 
 ```javascript
 FinBoxRiskSdk.setDeviceMatch("useremail@gmail.com", "Full Name", "9999999999");
 ```
 
-## Forward Notifications to SDK
+## Forward Notifications to SDK (Android only)
 
 Certain phone manufacturers, implement aggressive battery optimization features that kill apps running in the background after a certain period of inactivity. This can prevent the DeviceConnect SDK's continuous syncing from functioning properly, as it relies on background data collection. In such cases, FinBox’s server may need to request data from the SDK when continuous sync has stopped.
 
@@ -230,18 +247,22 @@ Add the following lines inside the overridden `onMessageReceived` method availab
 FinBoxRiskSdk.forwardFinBoxNotificationToSDK(remoteMessage.data);
 ```
 
-## Cancel Periodic
+## Cancel Periodic (Android only)
 
 Make sure to cancel data synchronization tasks when the user logs out of the app by using the `stopPeriodicSync` method. This ensures that no background sync operations continue unnecessarily, maintaining data security.
 
 ```javascript
 FinBoxRiskSdk.stopPeriodicSync();
 ```
-## Handle Sync Frequency
+## Handle Sync Frequency (Android only)
 
-By default, the sync frequency is set to **8 hours**. You can customize this frequency by calling the `setSyncFrequency` method and passing your preferred interval **in seconds** as an argument. Ensure this method is invoked after the user is created.
+By default, the sync frequency is set to **8 hours**. You can customize this frequency by calling the `setSyncFrequency` method and passing your preferred interval **in hours** as an argument. Ensure this method is invoked after the user is created.
 
-## Reset User Data
+```javascript
+FinBoxRiskSdk.setSyncFrequency(12); // Sync every 12 hours
+```
+
+## Reset User Data (Android only)
 
 If you need to clear a user's data stored on the device and initiate a fresh data sync, use the `resetData` method. This ensures that all previous data is removed, and syncing starts from scratch.
 
@@ -249,7 +270,7 @@ If you need to clear a user's data stored on the device and initiate a fresh dat
 FinBoxRiskSdk.resetData();
 ```
 
-## Forget User
+## Forget User (Android only)
 
 If a user requests to be forgotten, use the `forgetUser` method. This will delete all user details from our system, ensuring this meets digital guidelines for right to be forgotten.
 
