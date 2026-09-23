@@ -15,12 +15,23 @@ Add the SDK to the application using Swift Package Manager (Preferred) or Cocopo
 
 1. In Xcode, select File > Add Packages...
 
-2. Enter the [Risk Manager URL](https://github.com/finbox-in/device-connect-ios-sdk) for this repository
+2. Enter the [Risk Manager URL](https://github.com/finbox-in/dc-ios-sdk) for this repository
+
+3. Select "Exact version" from the "Dependency Rule" drop-down
+
+4. Enter the version number in the field next to the dropdown
 
 </template>
 <template v-slot:cocopods>
 
-1. Edit the `pod` file and add `pod 'RiskManager`
+1. Add the following line to your `Podfile`, replacing `v1.4.2` with the desired release tag:
+```ruby
+pod 'RiskManager', :git => 'https://github.com/finbox-in/dc-ios-sdk.git', :tag => 'v1.4.2'
+```
+2. Run the following command to install the pod:
+```bash
+pod install
+```
 
 </template>
 </CodeSwitcher>
