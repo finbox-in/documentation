@@ -178,6 +178,23 @@ Possible values for `code` are as follows:
 | - | - | - |
 | `MW200` | Journey is completed successfully |
 | `MW500` | User exits the journey |
-| `MW400` | Some error occurred in the SDK |
+| `MW1000` | Invalid client API key |
+| `MW1100` | Invalid or expired authentication token |
+| `MW1200` | User details fetch error |
+| `MW2000` | Undefined error |
 | `CL200` | Credit line withdrawal success |
 | `CL500` | Credit line withdrawal failed |
+
+## Page Load Timeout
+
+If a page inside the SDK WebView takes more than **30 seconds** to load, the SDK
+shows a timeout screen so the user isn't stuck on a blank or loading page.
+
+### What the user sees
+
+The timeout screen has two actions:
+
+| Button | Behavior |
+|---|---|
+| **Retry** | Reloads the URL that timed out. The 30-second timer starts again. |
+| **Close** | Closes the WebView and returns control to your app. |
