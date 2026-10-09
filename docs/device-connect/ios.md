@@ -24,9 +24,9 @@ Add the SDK to the application using Swift Package Manager (Preferred) or Cocopo
 </template>
 <template v-slot:cocopods>
 
-1. Add the following line to your `Podfile`, replacing `v1.4.2` with the desired release tag:
+1. Add the following line to your `Podfile`, replacing `v0.3.11` with the desired release tag:
 ```ruby
-pod 'RiskManager', :git => 'https://github.com/finbox-in/dc-ios-sdk.git', :tag => 'v1.4.2'
+pod 'RiskManager', :podspec => 'https://raw.githubusercontent.com/finbox-in/dc-ios-sdk/v0.3.11/RiskManager.podspec'
 ```
 2. Run the following command to install the pod:
 ```bash
