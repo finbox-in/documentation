@@ -15,12 +15,23 @@ Add the SDK to the application using Swift Package Manager (Preferred) or Cocopo
 
 1. In Xcode, select File > Add Packages...
 
-2. Enter the [Bank Connect URL](https://github.com/finbox-in/bank-connect-ios-sdk) for this repository
+2. Enter the [Bank Connect URL](https://github.com/finbox-in/bc-ios-sdk) for this repository
+
+3. Select "Exact version" from the "Dependency Rule" drop-down
+
+4. Enter the version number in the field next to the dropdown
 
 </template>
 <template v-slot:cocopods>
 
-1. Edit the `pod` file and add `pod 'BankConnect`
+1. Add the following line to your `Podfile`, replacing `v0.5.3` with the desired release tag:
+```ruby
+pod 'BankConnect', :podspec => 'https://raw.githubusercontent.com/finbox-in/bc-ios-sdk/v0.5.3/BankConnect.podspec'
+```
+2. Run the following command to install the pod:
+```bash
+pod install
+```
 
 </template>
 </CodeSwitcher>
