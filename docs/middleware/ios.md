@@ -15,12 +15,23 @@ Add the SDK to the application using Swift Package Manager (Preferred) or Cocopo
 
 1. In Xcode, select File > Add Packages...
 
-2. Enter the [FinBox Lending URL](https://github.com/finbox-in/lending-middleware-ios-sdk) for this repository
+2. Enter the [FinBox Lending URL](https://github.com/finbox-in/lending-ios-sdk) for this repository
+
+3. Select "Exact version" from the "Dependency Rule" drop-down
+
+4. Enter the version number in the field next to the dropdown
 
 </template>
 <template v-slot:cocopods>
 
-1. Edit the `pod` file and add `pod 'FinBoxLending`
+1. Add the following line to your `Podfile`, replacing `v0.3.3` with the desired release tag:
+```ruby
+pod 'FinBoxLending', :podspec => 'https://raw.githubusercontent.com/finbox-in/lending-ios-sdk/v0.3.3/FinBoxLending.podspec'
+```
+2. Run the following command to install the pod:
+```bash
+pod install
+```
 
 </template>
 </CodeSwitcher>
