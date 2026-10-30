@@ -1,6 +1,8 @@
 module.exports = {
   title: "FinBox Documentation",
   description: "Documentation for FinBox SDK",
+  // BankConnect docs are hidden: their markdown is kept in the repo but not built
+  patterns: ["**/*.md", "**/*.vue", "!bank-connect/**", "!session-flow/**"],
   plugins: [
     "code-switcher",
     [
@@ -33,7 +35,7 @@ module.exports = {
     nav: [
       { text: "Home", link: "/" },
       { text: "DeviceConnect", link: "/device-connect/" },
-      { text: "BankConnect", link: "/session-flow/" },
+      // { text: "BankConnect", link: "/session-flow/" },
       { text: "About", link: "https://finbox.in" },
     ],
     sidebar: {

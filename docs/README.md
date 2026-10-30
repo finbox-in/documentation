@@ -4,7 +4,11 @@ heroImage: logo.svg
 footer: Copyright © 2023 Moshpit Technologies Pvt. Ltd.
 ---
 <style>
+.home .features {
+  justify-content: center !important;
+}
 .home .feature {
+  text-align: center;
   flex-basis: 45% !important;
   max-width: 45% !important;
 }
@@ -14,13 +18,11 @@ footer: Copyright © 2023 Moshpit Technologies Pvt. Ltd.
     padding: 0 2.5rem !important;
   }
 }
-
 .home .doc_link:hover {
     border-bottom-width: 1px;
     border-bottom-style: solid;
     padding-bottom: 3px;
 }
-
 </style>
 <div class="features">
   <div class="feature">
@@ -32,7 +34,7 @@ footer: Copyright © 2023 Moshpit Technologies Pvt. Ltd.
       <a href="device-connect/" class="doc_link">See Documentation →</a>
     </p>
   </div>
-  <div class="feature">
+  <!-- <div class="feature">
     <h2>BankConnect</h2>
     <p>
       Lets businesses get access to enriched transaction data of customers using bank statements uploaded manually or via Net Banking.
@@ -40,5 +42,5 @@ footer: Copyright © 2023 Moshpit Technologies Pvt. Ltd.
     <p>
       <a href="session-flow/" class="doc_link">See Documentation →</a>
     </p>
-  </div>
+  </div> -->
 </div>
